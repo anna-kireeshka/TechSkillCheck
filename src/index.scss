@@ -1,0 +1,57 @@
+@import "./assets/scss/_variables.scss";
+
+body {
+  margin: 0;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 400;
+  color: $mainFontColor;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #eff2f6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('/assets/fonts/MontserratAlternates-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('/assets/fonts/MontserratAlternates-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('/assets/fonts/MontserratAlternates-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('/assets/fonts/MontserratAlternates-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+.container {
+  display: flex;
+}
+.MuiAppBar-root {
+  background-color: #fff;
+}
+h1 {
+  font-size: 46px;
+}
+h2 {
+  font-size: 30px;
+}

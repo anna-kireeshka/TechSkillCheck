@@ -1,0 +1,30 @@
+.technologies {
+  padding: 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+  }
+
+  &Header {
+    text-align: center;
+    font-size: 46px;
+  }
+
+  &List {
+
+    &Item {
+
+    }
+  }
+}
+
+.icon {
+  width: 120px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
