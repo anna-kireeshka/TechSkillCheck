@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styles from './Header.module.scss';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Page from "../UI/Page/Page"
+import Page from "../Page/Page"
 
 
 

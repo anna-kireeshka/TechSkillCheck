@@ -3,73 +3,57 @@
   width: 100%;
   height: 100vh;
   margin-top: 64px;
+
   &Container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    @media (max-width: 575.98px) {
+      flex-direction: column;
+    }
   }
   &ContainerColumn {
     position: absolute;
     width: 100%;
-    top: calc(50% - 64px);
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, calc(-50% - 64px))
+    transform: translate(-50%, 0);
+
+    @media (min-width: 768px) {
+      top: 20%;
+      transform: translate(-50%, 0);
+    }
   }
   &Heading {
     text-align: center;
-    margin-bottom: 2rem;
   }
   &SubHeading {
     text-align: center;
     margin-bottom: 2rem;
+    @media (max-width: 575.98px) {
+      margin-bottom: 1rem;
+    }
   }
 }
 
 .card {
-  position: relative;
-  border-radius: 20px;
-  box-shadow: 0 7px 20px 0 rgba(58, 109, 139, 0.30);
-  padding: 5rem 2rem;
-  width: calc(100% / 3.2);
-  text-align: center;
-  cursor: pointer;
-  background: #fff;
 
   &Heading {
-    margin-bottom: 2rem;
-    font-size:24px;
+    height: 70px;
   }
   &Image {
     position: absolute;
-    width: 200px;
-    height: 55%;
-    bottom: 0;
+    width: 150px;
+    height: 40%;
     right: 0;
+    bottom: 0;
 
     img {
       width: 100%;
       height: 100%;
     }
-  }
-}
-.card:hover {
-  animation: cardAnimation 1s linear;
-  animation-iteration-count: infinite;
-
-}
-
-@keyframes  cardAnimation{
-  0% {
-    transform: rotate(0deg);
-  }
-  60% {
-    transform: rotate(5deg);
-  }
-  100% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: rotate(0deg);
   }
 }

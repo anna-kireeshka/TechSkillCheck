@@ -8,8 +8,7 @@ import Radio from "@mui/material/Radio";
 interface Props {
     list: string[]
 }
-const RadioButtonGroup: FC<Props> = (list) => {
-    console.log(list.list)
+const RadioButtonGroup: FC<Props> = ({list}) => {
     return (
         <FormControl>
             <RadioGroup
@@ -17,7 +16,7 @@ const RadioButtonGroup: FC<Props> = (list) => {
                 name="radio-buttons-group"
             >
                 {
-                    list.list.map((el: string, idx: number) => (
+                    list.map((el: string, idx: number) => (
                             <FormControlLabel key={idx} value={el} control={<Radio name={el}/>} label={el}/>
                     ))
                 }

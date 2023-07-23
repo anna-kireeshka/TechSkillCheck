@@ -18,8 +18,12 @@ code {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
 
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 @font-face {
   font-family: 'Montserrat Alternates';
   src: url('/assets/fonts/MontserratAlternates-Light.ttf') format('truetype');
@@ -51,7 +55,37 @@ code {
 }
 h1 {
   font-size: 46px;
+  @media (max-width: 575.98px) {
+    font-size: calc(46px / 2);
+  }
 }
 h2 {
   font-size: 30px;
+  @media (max-width: 575.98px) {
+    font-size: 25px;
+  }
+}
+h3 {
+  font-size:20px;
+  @media (max-width: 575.98px) {
+    font-size: 18px;
+  }
+}
+.route-animation-enter {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.route-animation-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+.route-animation-exit {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.route-animation-exit-active {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
 }

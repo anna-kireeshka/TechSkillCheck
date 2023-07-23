@@ -5,9 +5,9 @@ interface PageProps {
 }
 const Page: FC<PageProps> = ({ children }) => {
     return (
-        <section className={styles.wrapper}>
+        <div className={styles.wrapper}>
             {children}
-        </section>
+        </div>
     )
 }
 
