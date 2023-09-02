@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import  directionsSlice from "./directions";
 import technologiesSlice from './technologies'
+import quizSlice from './quiz'
 
 export const store = configureStore({
     reducer: {
         direction: directionsSlice,
-        technology: technologiesSlice
+        technology: technologiesSlice,
+        quiz: quizSlice,
     },
 })
 

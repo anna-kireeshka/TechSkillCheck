@@ -1,27 +1,45 @@
-
-import React, {FC} from 'react';
-import FormControl from "@mui/material/FormControl";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
+import React, { FC } from "react";
+import DOMPurify from "dompurify";
+import styles from "./RadioButtonGroup.module.scss";
+import CodeSyntaxHighlighter from "../CodeSyntaxHighlighter/CodeSyntaxHighlighter";
 
 interface Props {
-    list: string[]
+  list: [
+    {
+      id: number;
+      text: string;
+      code: string;
+      image: string;
+    }
+  ];
 }
-const RadioButtonGroup: FC<Props> = ({list}) => {
-    return (
-        <FormControl>
-            <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                name="radio-buttons-group"
-            >
-                {
-                    list.map((el: string, idx: number) => (
-                            <FormControlLabel key={idx} value={el} control={<Radio name={el}/>} label={el}/>
-                    ))
-                }
-            </RadioGroup>
-        </FormControl>
-    )
-}
-export default RadioButtonGroup
+const RadioButtonGroup: FC<Props> = ({ list }) => {
+  return (
+    <div className={styles.formGroup}>
+      {list.map((el: any) => (
+        <div key={el.id}>
+          <input
+            className={styles.formGroupInput}
+            type="radio"
+            id={el.id}
+            name="radio"
+            value={el.text}
+            checked
+          />
+          {el.code !== "" ? (
+            <label className={styles.formGroupLabel} htmlFor={el.id}>
+              <CodeSyntaxHighlighter code={el.code} />
+            </label>
+          ) : (
+            <label
+              className={styles.formGroupLabel}
+              htmlFor={el.id}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(el.text) }}
+            ></label>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+export default RadioButtonGroup;

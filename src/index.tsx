@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Header from "./components/UI/Header/Header";
 import Footer from "./components/UI/Footer/Footer";
+import { StyledEngineProvider } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

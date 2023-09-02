@@ -27,18 +27,18 @@ export interface QuizDTO {
     id: number,
     total: number,
     current: number,
-    item: {
+    question: {
         id: number,
-        question: string,
-        question_code: string,
-        question_image: string,
-        options:[
-            {
-                id: number,
-                text: string,
-                code: string,
-                image: string
-            },
-        ]
-    }
+        text: string,
+        code: string,
+        image: string,
+    },
+    options:[
+        {
+            id: number,
+            text: string,
+            code: string,
+            image: string
+        },
+    ]
 }

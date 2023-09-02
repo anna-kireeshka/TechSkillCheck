@@ -15,7 +15,7 @@ export const fetchQuiz = createAsyncThunk<QuizDTO[]>(
     }
 )
 
-const questionSlice = createSlice({
+const quizSlice = createSlice({
     name: 'quiz',
     initialState,
     reducers: {
@@ -29,6 +29,6 @@ const questionSlice = createSlice({
     }
 })
 
-export const getQuiz = (state: any) => state.data
+export const getQuiz = (state: any) => state.quiz.data
 
-export default questionSlice.reducer
+export default quizSlice.reducer

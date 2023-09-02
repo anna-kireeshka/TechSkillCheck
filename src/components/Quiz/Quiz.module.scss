@@ -18,21 +18,27 @@
   justify-content: center;
 
   &Card {
-    border-radius: 8px;
+    border-radius: 20px;
     padding: 4rem;
-    border: 1px solid #334366;
+    box-shadow: 0 7px 20px 0 rgba(58, 109, 139, 0.3);
 
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+  }
+
+  &Container {
+    width: 100%;
   }
 
   &Question {
     width: 80%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
     &Title {
       font-weight: 800;
       font-size: 1.2rem;
+      margin-bottom: 1rem;
     }
   }
 
@@ -44,6 +50,21 @@
     margin-bottom: 2rem;
     position: relative;
     z-index: 1;
+    &Info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      &Count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid;
+      }
+    }
     &Bar {
       background: #2C6CB0;
       top: 0;

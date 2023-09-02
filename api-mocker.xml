@@ -92,35 +92,35 @@
                             "id": 31029384,
                             "total": 10,
                             "current": 1,
-                            "items": [
-                                        {
-                                            "id": "1",
-                                            "question":"Что выведет <code>alert</code>?",
-                                            "question_code": "alert(str); // ? let str = "Hello";",
-                                            "question_image": "",
-                                            "options": [
-                                                {
-                                                    "id":111,
-                                                    "text": "Будет ошибка.",
-                                                    "code": "",
-                                                    "image": ""
-                                                },
-                                                {
-                                                    "id":112,
-                                                    "text": "<code>undefined</code>",
-                                                    "code": "",
-                                                    "image": "g"
-                                                },
-                                                {
-                                                    "id":113,
-                                                    "text": "<code>Hello</code>",
-                                                    "code": "",
-                                                    "image": ""
-                                                },
-                                            ]
-                                        },
-                                    ]
-                            }
+                            "question": 
+                                {
+                                    "id": "1",
+                                    "text":"Что выведет <code>alert</code>?",
+                                    "code": "alert(str); // ? let str = 'Hello';",
+                                    "image": ""
+                                            
+                                },
+                            "options": [
+                                {
+                                    "id":111,
+                                    "text": "Будет ошибка.",
+                                    "code": "",
+                                    "image": ""
+                                },
+                                {
+                                    "id":112,
+                                    "text": "",
+                                    "code": "undefined",
+                                    "image": ""
+                                },
+                                {
+                                    "id":113,
+                                    "text": "Hello",
+                                    "code": "",
+                                    "image": ""
+                                }
+                            ]
+                        }
                         ]</response>
                 </route>
             </group>
