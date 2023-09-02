@@ -5,6 +5,7 @@ import Directions from "../components/Directions/Directions";
 const DirectionsPage = () => {
     return (
             <Box sx={{ flexGrow: 1 }}>
+                <h1 className="card-heading">Направления</h1>
                 <Directions />
             </Box>
     );

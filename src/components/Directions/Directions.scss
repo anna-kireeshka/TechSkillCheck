@@ -1,0 +1,21 @@
+.direction {
+  display: grid;
+  gap: 1rem;
+  place-items: center;
+  min-height: 100vh;
+  @media (min-width: 900px)  {
+    min-height: calc(100vh - 14rem);
+  }
+
+  &_column {
+    width: 100%;
+  }
+
+  &_sub_heading {
+    text-align: center;
+    margin-bottom: 2rem;
+    @media (max-width: 575.98px) {
+      margin-bottom: 1rem;
+    }
+  }
+}

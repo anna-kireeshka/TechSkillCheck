@@ -12,6 +12,8 @@
 /build
 
 # misc
+/api-mocker.xml
+.idea
 .DS_Store
 .env.local
 .env.development.local

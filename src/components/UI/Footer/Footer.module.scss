@@ -1,0 +1,17 @@
+.header{
+  &Link {
+    color: #2C6CB0;
+    text-decoration: none;
+    font-weight: 400;
+    &:hover {
+      color: #294462;
+    }
+  }
+  //&Btn:global(.MuiButton-root),
+  //&Btn:global(.MuiIconButton-root) {
+  //  border: 1px solid #2C6CB0;
+  //}
+}
+.headerWrap {
+  padding: 0;
+}

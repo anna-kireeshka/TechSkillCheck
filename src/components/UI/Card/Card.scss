@@ -5,17 +5,14 @@
   box-shadow: 0 7px 20px 0 rgba(58, 109, 139, 0.30);
   padding: 4rem 3rem;
   width: 100%;
-  max-width: 85%;
   margin-bottom: 1rem;
   text-align: center;
   cursor: pointer;
   background: #fff;
-
-  @media (min-width: 768px) {
-    max-width: 48%
-  }
-  @media (min-width: 1024px) {
-    max-width: 32%;
+  &_technologies {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 .card:hover {

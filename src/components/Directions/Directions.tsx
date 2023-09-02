@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import styles from './Directions.module.scss'
+import './Directions.scss'
 import Page from "../UI/Page/Page"
 
-import DirectionsList from "../DirectionsList/DirectionsList";
+import CardList from '../UI/CardList/CardList'
 import { getDirections, fetchDirections } from "../../store/directions";
 import { useSelector, useDispatch } from 'react-redux';
 const Directions = () => {
@@ -16,13 +16,12 @@ const Directions = () => {
 
     return (
         <Page>
-        <section className={styles.direction}>
-            <h1 className={styles.directionHeading}>Направления</h1>
-            <div className={styles.directionContainerColumn}>
-                <h2 className={styles.directionSubHeading}>Выберите направление</h2>
-                <DirectionsList directionList={directions}/>
+            <div className="direction">
+                <div className="direction_column">
+                    <h2 className="direction_sub_heading">Выберите направление</h2>
+                    <CardList directionList={directions} page={'directions'}/>
+                </div>
             </div>
-        </section>
         </Page>
     )
 }

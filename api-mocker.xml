@@ -1,0 +1,132 @@
+<xml protocol="http">
+
+    <name>API v1</name>
+    <description>API</description>
+
+    <api>
+        <group path="api" description="API v1">
+
+            <group path="v1" description="Directions list">
+
+                <route path="directions" description="Get Directions" method="GET" status-code="200">
+                    <header key="Access-Control-Allow-Origin" value="*"/>
+                    <header key="Content-Type" value="application/json"/>
+                    <response type="json" description="Array of Pizzas">[
+                            {
+                                "total": 2,
+                                "items": [
+                                    {
+                                        "id": "1",
+                                        "name":"Backend-разработка",
+                                        "image_url": "assets/image/icon-backend.svg",
+                                        "short_description": ""
+                                    },
+                                    {
+                                        "id": "2",
+                                        "name":"Frontend-разработка",
+                                        "image_url": "assets/image/icon-frontend.svg",
+                                        "short_description": ""
+                                    }
+                                ]
+                            }
+                        ]</response>
+                </route>
+                <route path="technologies" description="Get Directions" method="GET" status-code="200">
+                    <header key="Access-Control-Allow-Origin" value="*"/>
+                    <header key="Content-Type" value="application/json"/>
+                    <response type="json" description="Array of Pizzas">[
+                            {
+                                "total": 10,
+                                 "items": [
+                                        {
+                                            "name": "GO",
+                                            "image_url": "assets/image/icon-go.svg",
+                                            "id": 0,
+                                            "short_description": ""
+                                        },
+                                        {
+                                            "name": "PHP",
+                                            "image_url": "assets/image/icon-php.svg",
+                                            "id": 1,
+                                            "short_description": ""
+                                        },
+                                        {
+                                            "name": "Java",
+                                            "image_url": "assets/image/icon-java.svg",
+                                            "id": 3,
+                                            "short_description": ""
+                                        },
+                                        {
+                                            "name": "C++",
+                                            "image_url": "assets/image/icon-c-plus.svg",
+                                            "id": 4,
+                                            "short_description": ""
+                                        },
+                                        {
+                                            "name": "C#",
+                                            "image_url": "assets/image/icon-c.svg",
+                                            "id": 5,
+                                            "short_description": ""
+                                        },
+                                        {
+                                            "name": "NodeJS",
+                                            "image_url": "assets/image/icon-node-js.svg",
+                                            "id": 6,
+                                            "short_description": ""
+                                        },
+                                        {
+                                            "name": "Phyton",
+                                            "image_url": "assets/image/icon-python.svg",
+                                            "id": 7,
+                                            "short_description": ""
+                                        }
+                                ]
+                            }
+                        ]</response>
+                </route>
+                <route path="question" description="Get question" method="GET" status-code="200">
+                    <header key="Access-Control-Allow-Origin" value="*"/>
+                    <header key="Content-Type" value="application/json"/>
+                    <response type="json" description="Array of questions">[
+                        {
+                            "id": 31029384,
+                            "total": 10,
+                            "current": 1,
+                            "items": [
+                                        {
+                                            "id": "1",
+                                            "question":"Что выведет <code>alert</code>?",
+                                            "question_code": "alert(str); // ? let str = "Hello";",
+                                            "question_image": "",
+                                            "options": [
+                                                {
+                                                    "id":111,
+                                                    "text": "Будет ошибка.",
+                                                    "code": "",
+                                                    "image": ""
+                                                },
+                                                {
+                                                    "id":112,
+                                                    "text": "<code>undefined</code>",
+                                                    "code": "",
+                                                    "image": "g"
+                                                },
+                                                {
+                                                    "id":113,
+                                                    "text": "<code>Hello</code>",
+                                                    "code": "",
+                                                    "image": ""
+                                                },
+                                            ]
+                                        },
+                                    ]
+                            }
+                        ]</response>
+                </route>
+            </group>
+
+        </group>
+
+    </api>
+
+</xml>

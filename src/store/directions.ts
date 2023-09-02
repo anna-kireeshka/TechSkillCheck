@@ -1,44 +1,17 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {Directions} from "../types";
-import BackendIcon from "../assets/image/icon-backend.svg";
-import FrontendIcon from "../assets/image/icon-frontend.svg";
-import QAIcon from "../assets/image/icon-qa.svg";
+import {DirectionsDTO} from "../shared/types/types";
+import {InitialState} from "../shared/types/general"
+import axios from 'axios';
 
-//const actionCreators = createAction('GET_DIRECTIONS')
+const initialState: InitialState<Array<DirectionsDTO>> = {
+    data: [],
+    loading: 'idle'
 
-interface  InitialState {
-    directions: Array<Directions>;
-    status: string;
-    error: string;
 }
-const initialState: InitialState = {
-    directions: [],
-    status: '',
-    error: '',
-}
-export const fetchDirections = createAsyncThunk<Directions[]>(
+export const fetchDirections = createAsyncThunk<DirectionsDTO[]>(
     '/direction/getDirections',
     async() => {
-        // const response = await
-        const response = {
-            data: [
-                {
-                    name: 'Backend-разработка',
-                    image: BackendIcon,
-                    id: 0,
-                },
-                {
-                    name: 'Frontend-разработка',
-                    image: FrontendIcon,
-                    id: 1,
-                },
-                {
-                    name: 'Тестирование',
-                    image: QAIcon,
-                    id: 2,
-                },
-            ]
-        }
+        const response = await axios.get(('http://127.0.0.1:8081/api/v1/directions'))
         return response.data
     }
     )
@@ -51,13 +24,13 @@ const directionsSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(fetchDirections.fulfilled, (state, action) => {
-                state.status = "succeeded"
-                state.directions = [...action.payload];
+                state.loading = "succeeded"
+                state.data = [...action.payload];
         })
     }
 })
 
-export const getDirectionsStatus = (state: InitialState) => state.status
-export const getDirections = (state: any) => state.direction.directions
+export const getDirectionsStatus = (state: InitialState<DirectionsDTO>) => state.loading
+export const getDirections = (state: any) => state.direction.data
 
 export default directionsSlice.reducer

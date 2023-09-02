@@ -1,0 +1,51 @@
+.directionContainer {
+    display: grid;
+    column-gap: 2rem;
+
+    @media (min-width: 600px)  {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  &-2 {
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.cardHeadingDirections {
+  .card {
+    &Heading {
+      height: 70px;
+    }
+  }
+}
+.cardImageDirections {
+      position: absolute;
+      width: 150px;
+      height: 40%;
+      right: 0;
+      bottom: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+}
+.cardHeadingTechnologies {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+  .cardImageTechnologies {
+    width: 70px;
+    height: 70px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+

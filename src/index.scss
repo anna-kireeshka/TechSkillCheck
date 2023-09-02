@@ -8,6 +8,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #eff2f6;
+  height: 100vh;
+}
+#root {
+  height: auto;
+  overflow-x: hidden;
 }
 
 code {
@@ -26,25 +31,25 @@ a {
 }
 @font-face {
   font-family: 'Montserrat Alternates';
-  src: url('/assets/fonts/MontserratAlternates-Light.ttf') format('truetype');
+  src: url('assets/fonts/MontserratAlternates-Light.ttf') format('truetype');
   font-weight: 300;
 }
 
 @font-face {
   font-family: 'Montserrat Alternates';
-  src: url('/assets/fonts/MontserratAlternates-Regular.ttf') format('truetype');
+  src: url('assets/fonts/MontserratAlternates-Regular.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'Montserrat Alternates';
-  src: url('/assets/fonts/MontserratAlternates-Medium.ttf') format('truetype');
+  src: url('assets/fonts/MontserratAlternates-Medium.ttf') format('truetype');
   font-weight: 500;
 }
 
 @font-face {
   font-family: 'Montserrat Alternates';
-  src: url('/assets/fonts/MontserratAlternates-Bold.ttf') format('truetype');
+  src: url('assets/fonts/MontserratAlternates-Bold.ttf') format('truetype');
   font-weight: 700;
 }
 .container {
@@ -52,6 +57,9 @@ a {
 }
 .MuiAppBar-root {
   background-color: #fff;
+}
+.MuiBox-root {
+  height: 100%;
 }
 h1 {
   font-size: 46px;
@@ -71,21 +79,27 @@ h3 {
     font-size: 18px;
   }
 }
+.card-heading {
+  text-align: center;
+  margin-top: 4rem;
+}
+$easy: cubic-bezier(0.39, 0.575, 0.565, 1);
+
 .route-animation-enter {
   opacity: 0;
-  transform: translateY(100%);
+  transform: translate3d(0, 100%, 0)
 }
 .route-animation-active {
   opacity: 1;
-  transform: translateY(0%);
-  transition: opacity 300ms ease-in, transform 300ms ease-in;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 500ms $easy, transform 500ms $easy;
 }
 .route-animation-exit {
   opacity: 1;
-  transform: translateY(0%);
+  transform: translate3d(0, 0, 0);
 }
 .route-animation-exit-active {
   opacity: 0;
-  transform: translateY(-100%);
-  transition: opacity 300ms ease-in, transform 300ms ease-in;
+  transform: translate3d(0, -100%, 0);
+  transition: opacity 500ms $easy, transform 500ms $easy;
 }
