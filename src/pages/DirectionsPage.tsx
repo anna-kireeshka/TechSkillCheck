@@ -1,14 +1,15 @@
-import React from 'react';
 import Box from "@mui/material/Box";
 import Directions from "../components/Directions/Directions";
+import { useTranslation } from "react-i18next";
 
 const DirectionsPage = () => {
-    return (
-            <Box sx={{ flexGrow: 1 }}>
-                <h1 className="card-heading">Направления</h1>
-                <Directions />
-            </Box>
-    );
+  const { t } = useTranslation();
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <h1 className="card-heading">{t("directionTitle")}</h1>
+      <Directions />
+    </Box>
+  );
 };
 
 export default DirectionsPage;

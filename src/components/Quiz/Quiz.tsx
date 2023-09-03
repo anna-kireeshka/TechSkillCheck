@@ -1,18 +1,22 @@
-import React, { useEffect, useState, FC } from "react";
-import Page from "../UI/Page/Page";
-import "./Quiz.scss";
-import { getOptionId, getQuiz } from "../../store/quiz";
+import { useEffect, useState, FC } from "react";
+import { Page, Container } from "../UI/index";
+import { getQuiz, getOptionId } from "../../store/quiz";
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuiz, fetchNextQuiz } from "../../store/quiz";
-import RadioButtonGroup from "../UI/RadioButtonGroup/RadioButtonGroup";
-import CodeSyntaxHighlighter from "../UI/CodeSyntaxHighlighter/CodeSyntaxHighlighter";
+import QuizCard from './QuizCard'
+import { useNavigate } from "react-router-dom";
+
+import "./Quiz.scss";
 
 const Quiz = () => {
   const [technologyId, setTechnologyId] = useState(0);
-  const dispatch = useDispatch();
+  const [isOpenModal, setOpenModal] = useState(false);
 
-  let location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const location = useLocation();
+
   useEffect(() => {
     const pathname = location.pathname.split('/')
     const id = Number(pathname[pathname.length - 1])
@@ -27,23 +31,31 @@ const Quiz = () => {
     
   }, [technologyId]);
   const quiz = useSelector(getQuiz);
-  const optionId = useSelector(getOptionId)
-  const {current, total, question, options} = quiz
-
-  const [labelBtn, setLabelBtn] = useState(total < 10 ? "Дальше" : "Завершить");
+  const {current, total, question} = quiz
 
   const getWidthProgressBar = (current: number) => {
     return `${current * 10}%`;
   };
 
-  const nextQuestion = () => {
-    const query = {quiz_id: quiz.id, question_id: question.id, option_id: optionId}
-    dispatch<any>(fetchNextQuiz(query))
+  const updatedOptionId = useSelector(getOptionId)
+
+  const onNextQuestion = () => {
+    const query = {
+      quiz_id: quiz.id,
+      question_id: question.id,
+      option_id: updatedOptionId,
+    };
+    dispatch<any>(fetchNextQuiz(query));
+
+    if (current === 10) {
+      navigate(`/quiz/result/${quiz.id}`)
+    }
   }
 
   return (
+    <>
     <Page>
-      <div className="test">
+      <Container>
           <div className="testContainer">
             <div className="testProgressInfo">
               <p className="testProgressInfoCount">
@@ -56,17 +68,11 @@ const Quiz = () => {
                 style={{ width: getWidthProgressBar(current) }}
               ></div>
             </div>
-            <div className="testCard">
-              <div className="testQuestion">
-                <p className="testQuestionTitle">{question?.text ?? ''}</p>
-                <CodeSyntaxHighlighter code={question?.code ?? ''} />
-              </div>
-              <RadioButtonGroup list={options} />
-              <button className="testButton" onClick={nextQuestion}>{labelBtn}</button>
-            </div>
+            <QuizCard quiz={quiz} onNextQuestion={onNextQuestion}/>
           </div>
-      </div>
+      </Container>
     </Page>
+    </>
   );
 };
 

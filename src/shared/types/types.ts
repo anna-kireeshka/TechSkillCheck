@@ -42,3 +42,22 @@ export interface QuizDTO {
         },
     ]
 }
+
+
+export interface QuizResultDTO {
+    id: number;
+    items: {
+        question: {
+            id: number;
+            text: string;
+            code?: string,
+        };
+        options: {
+            id: number;
+            text: string;
+            code?: string,
+        }[];
+    answer_id: number,
+    correct_id: number
+    };
+}

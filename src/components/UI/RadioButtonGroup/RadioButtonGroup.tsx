@@ -1,9 +1,8 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 import DOMPurify from "dompurify";
 import styles from "./RadioButtonGroup.module.scss";
 import CodeSyntaxHighlighter from "../CodeSyntaxHighlighter/CodeSyntaxHighlighter";
-import { useSelector, useDispatch } from "react-redux";
-import { setAnswer } from '../../../store/quiz';
+
 
 interface Props {
   list: [
@@ -14,22 +13,10 @@ interface Props {
       image?: string;
     }
   ];
+  onSetAnswer: (value: string | number) => void
 }
 
-const RadioButtonGroup: FC<Props> = ({ list }) => {
-  const dispatch = useDispatch();
-  const [optionId, setOptionId] = useState(0);
-
-  useEffect(() => {
-    if (optionId) {
-        dispatch<any>(setAnswer(optionId));
-    }
-  }, [optionId]);
-
-  const setAnswerId = (id: number) => {
-    setOptionId(id);
-  };
-
+const RadioButtonGroup: FC<Props> = ({ list, onSetAnswer }) => {
   return (
     <div className={styles.formGroup}>
       {list &&
@@ -41,7 +28,7 @@ const RadioButtonGroup: FC<Props> = ({ list }) => {
               id={el.id}
               name="radio"
               value={el.text}
-              onChange={() => setAnswerId(el.id)}
+              onChange={() => onSetAnswer(el.id)}
             />
             {el.code ? (
               <label className={styles.formGroupLabel} htmlFor={el.id}>

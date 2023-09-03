@@ -1,16 +1,18 @@
 .header{
   &Link {
+    display: flex;
+    align-items: center;
     color: #2C6CB0;
     text-decoration: none;
     font-weight: 400;
+    cursor: pointer;
     &:hover {
       color: #294462;
     }
+    &Text {
+      margin-left: 1rem;
+    }
   }
-  //&Btn:global(.MuiButton-root),
-  //&Btn:global(.MuiIconButton-root) {
-  //  border: 1px solid #2C6CB0;
-  //}
 }
 .headerWrap {
   padding: 0;

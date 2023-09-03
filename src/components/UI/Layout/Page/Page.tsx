@@ -1,11 +1,11 @@
 import React, {FC, ReactNode} from 'react';
-import styles from './Page.module.scss'
+import './Page.scss'
 interface PageProps {
     children: ReactNode;
 }
-const Page: FC<PageProps> = ({ children }) => {
+const Page: FC<PageProps> = ({children}) => {
     return (
-        <div className={styles.wrapper}>
+        <div className="wrapper">
             {children}
         </div>
     )

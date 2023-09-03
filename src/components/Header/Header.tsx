@@ -9,20 +9,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styles from './Header.module.scss';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Page from "../Page/Page";
-import { ThemeContext } from '../../../contexts/theme-context';
+import Page from "../UI/Layout/Page/Page";
+import { useTranslation } from "react-i18next";
+import { ThemeContext } from '../../contexts/theme-context';
 
 
 
 const Header = () => {
+    const { i18n, t } = useTranslation();
     const [lang, setLang] = useState('ru')
     const { theme, setTheme } = useContext(ThemeContext);
     const changeLang = () => {
-        if (lang === 'ru') {
-            setLang('eng')
-        } else {
-            setLang('ru')
-        }
+        lang === 'ru' ? setLang('en') : setLang('ru')
+        i18n.changeLanguage(lang);
     }
     const changeTheme = () => {
         const isCurrentLight = theme === 'light';
@@ -41,16 +40,7 @@ const Header = () => {
                             alignItems="center"
                             sx={{ flexGrow: 1 }}
                         >
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2, display: { sm: 'none' } }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                            <a href="/" className={styles.headerLink}> О площадке</a>
+                            <a href="/" className={styles.headerLink}> {t("about")} </a>
                             <Stack direction="row">
                                 <IconButton
                                     size="large"
