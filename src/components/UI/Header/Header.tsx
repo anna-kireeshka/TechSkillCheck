@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar"
@@ -9,13 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styles from './Header.module.scss';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Page from "../Page/Page"
+import Page from "../Page/Page";
+import { ThemeContext } from '../../../contexts/theme-context';
 
 
 
 const Header = () => {
     const [lang, setLang] = useState('ru')
-    const [theme, setTheme] = useState('light')
+    const { theme, setTheme } = useContext(ThemeContext);
     const changeLang = () => {
         if (lang === 'ru') {
             setLang('eng')
@@ -24,11 +25,9 @@ const Header = () => {
         }
     }
     const changeTheme = () => {
-        if (theme === 'light') {
-            setTheme('dark')
-        } else {
-            setTheme('light')
-        }
+        const isCurrentLight = theme === 'light';
+        setTheme(isCurrentLight ? 'dark' : 'light');
+        localStorage.setItem('default-theme', isCurrentLight ? 'dark' : 'light');
     }
     return (
         <Page>

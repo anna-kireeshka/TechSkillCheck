@@ -1,16 +1,15 @@
+@import "../../../assets/scss/variables.scss";
+
 .header{
   &Link {
-    color: #2C6CB0;
     text-decoration: none;
     font-weight: 400;
     &:hover {
-      color: #294462;
+      @include themify($themes) {
+        color: themed('textLinkHeaderHover');
+      }
     }
   }
-  //&Btn:global(.MuiButton-root),
-  //&Btn:global(.MuiIconButton-root) {
-  //  border: 1px solid #2C6CB0;
-  //}
 }
 .headerWrap {
   padding: 0;

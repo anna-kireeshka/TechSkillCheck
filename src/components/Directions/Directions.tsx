@@ -9,7 +9,7 @@ const Directions = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch<any>(fetchDirections())
+        dispatch<any>(fetchDirections('ru'))
     }, []);
 
     const directions = useSelector(getDirections)

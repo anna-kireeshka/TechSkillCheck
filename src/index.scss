@@ -4,13 +4,18 @@ body {
   margin: 0;
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 400;
-  color: $mainFontColor;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #eff2f6;
   height: 100vh;
+  
 }
 
+.layout  {
+  @include themify($themes) {
+    background: themed('colorBackground');
+    color: themed('colorText');
+  }
+}
 #root {
   height: auto;
   overflow-x: hidden;
@@ -57,7 +62,16 @@ a {
   display: flex;
 }
 .MuiAppBar-root {
-  background-color: #fff;
+  @include themify($themes) {
+    background: themed('colorBackground');
+    color: themed('colorText');
+  }
+}
+.MuiIconButton-root:hover,
+.MuiButton-root:hover {
+    @include themify($themes) {
+      background-color: themed('bgHeaderButtonHover');
+  }
 }
 .MuiBox-root {
   height: 100%;

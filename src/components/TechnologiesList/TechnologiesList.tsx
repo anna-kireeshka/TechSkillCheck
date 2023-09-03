@@ -1,15 +1,29 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './TechnologiesList.module.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import {getTechnologies, fetchTechnologies} from '../../store/technologies'
+import { useLocation } from 'react-router-dom';
 import Page from "../UI/Page/Page"
 import CardList from '../UI/CardList/CardList'
 
 const TechnologiesList = () => {
+    let location = useLocation();
+    const [directionId, setDirectionId] = useState(0)
     const dispatch = useDispatch()
+
     useEffect(() => {
-        dispatch<any>(fetchTechnologies())
+        const pathname = location.pathname.split('/')
+        const id = Number(pathname[pathname.length - 1])
+        setDirectionId(id)
     }, []);
+
+
+    useEffect(() => {
+        if (directionId > 0) {
+            const params = {id: directionId, lang: "ru"}
+            dispatch<any>(fetchTechnologies(params))
+        }
+    }, [directionId]);
 
     const technologies = useSelector(getTechnologies)
 
