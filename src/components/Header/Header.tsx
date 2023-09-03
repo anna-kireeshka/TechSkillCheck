@@ -5,24 +5,27 @@ import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
-import MenuIcon from '@mui/icons-material/Menu';
 import styles from './Header.module.scss';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Page from "../UI/Layout/Page/Page";
 import { useTranslation } from "react-i18next";
 import { ThemeContext } from '../../contexts/theme-context';
+import { LangContext } from '../../contexts/lang-context';
 
 
 
 const Header = () => {
     const { i18n, t } = useTranslation();
-    const [lang, setLang] = useState('ru')
+    const { lang, setLang } = useContext(LangContext)
     const { theme, setTheme } = useContext(ThemeContext);
     const changeLang = () => {
-        lang === 'ru' ? setLang('en') : setLang('ru')
+        const isCurrentLang = lang === 'ru'
+        setLang(isCurrentLang ? 'en' : 'ru')
         i18n.changeLanguage(lang);
+        localStorage.setItem('lang', isCurrentLang ? 'en' : 'ru');
     }
+    
     const changeTheme = () => {
         const isCurrentLight = theme === 'light';
         setTheme(isCurrentLight ? 'dark' : 'light');

@@ -16,6 +16,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { ThemeContext } from "./contexts/theme-context";
+import { LangContext } from "./contexts/lang-context";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -51,19 +52,32 @@ function App() {
     return localStorageTheme || browserDefault;
   };
 
+  const isBrowserDefaulLang = () =>
+    window.matchMedia("(prefers-lang-scheme: ru)").matches;
+
+  const getDefaultLang = () => {
+    const localStorageLang = localStorage.getItem("lang");
+    const browserDefault = isBrowserDefaulLang() ? "ru" : "en";
+    return localStorageLang || browserDefault;
+  };
+
   const [theme, setTheme] = useState(getDefaultTheme());
+  const [lang, setLang] = useState(getDefaultLang());
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={`theme-${theme}`}>
-        <div className="layout">
-          <Header />
-          <BrowserRouter>
-            <AnimatedRoutes />
-          </BrowserRouter>
-          <Footer />
+    <LangContext.Provider value={{ lang, setLang }}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <div className={`theme-${theme}`}>
+          <div className="layout">
+            <Header />
+            <BrowserRouter>
+              <AnimatedRoutes />
+            </BrowserRouter>
+            <Footer />
+          </div>
         </div>
-      </div>
-    </ThemeContext.Provider>
+      </ThemeContext.Provider>
+    </LangContext.Provider>
   );
 }
 

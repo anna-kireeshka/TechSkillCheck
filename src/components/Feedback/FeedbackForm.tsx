@@ -1,10 +1,13 @@
-import React from "react";
+import React, {FC} from "react";
 import { Modal } from "../UI/index"
-export const FeedbackForm = () => {
+
+interface Props {
+    isShow: boolean;
+}
+export const FeedbackForm:FC<Props> = ({isShow}) => {
 
     return (
-        <Modal isShow={false}>
-            Форма ос
+        <Modal isShow={isShow}>
         </Modal>
     )
 }

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
 import { Page, Container, CodeSyntaxHighlighter } from "../../UI/index";
 import styles from "./QuizResult.module.scss";
 import { getResult } from "../../../store/quiz";
@@ -9,6 +9,7 @@ import { QuizResultDTO } from "../../../shared/types/types"
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Icon from "@mui/material/Icon";
+import { LangContext } from "../../../contexts/lang-context"
 
 interface QuizResultIconProps {
     correctId: number;
@@ -36,15 +37,16 @@ const QuizResultIcon:FC<QuizResultIconProps> = ({correctId, answerId, currentId}
 const QuizResult = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { lang } = useContext(LangContext);
 
   const [quizId, setQuizId] = useState(0);
 
   useEffect(() => {
     if (quizId > 0) {
-      const params = { id: quizId, lang: "ru" };
+        const params = { id: quizId, lang: lang };
       dispatch<any>(fetchResultQuiz(params));
     }
-  }, [quizId]);
+  }, [quizId, lang]);
 
   useEffect(() => {
     const pathname = location.pathname.split("/");
@@ -82,8 +84,9 @@ const getCurrentAnswerColor = (currentId: number, optionId: number) =>{
       <Container>
         <div className={styles.quizResultContainer}>
           <h3 className={styles.quizResultHeading}>
-            Вы правильно ответили на {result} из {total} вопросов! Продолжайте
-            учиться и вы достигнете ещё больших высот!
+            Вы правильно ответили на {result} из {total} вопросов!
+            <br />
+            Продолжайте учиться и вы достигнете ещё больших высот!
           </h3>
           {items && items.map((el: QuizResultDTO["items"], index: number) => (
             <div className={styles.quizResultList} key={index} style={{ border : getBorderColor(el) }}>

@@ -9,7 +9,7 @@ const initialState: InitialState<DirectionsDTO> = {
 };
 export const fetchDirections = createAsyncThunk(
   "/direction/getDirections",
-  async (lang:"ru" | "eng") => {
+  async (lang: string) => {
     const response = await HTTP.get(`/directions?lang=${lang}`);
     return response.data;
   }

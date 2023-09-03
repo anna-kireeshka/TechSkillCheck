@@ -1,17 +1,19 @@
-import {useEffect} from 'react';
+import {useEffect, useContext} from 'react';
 import { Page, CardList } from "../UI/index"
 import { getDirections, fetchDirections } from "../../store/directions";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from "react-i18next";
+import { LangContext } from "../../contexts/lang-context"
 import './Directions.scss'
 
 const Directions = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch()
+    const { lang } = useContext(LangContext);
 
     useEffect(() => {
-        dispatch<any>(fetchDirections('ru'))
-    }, []);
+        dispatch<any>(fetchDirections(lang))
+    }, [lang]);
 
     const directions = useSelector(getDirections)
 

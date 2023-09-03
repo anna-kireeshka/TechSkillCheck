@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,46 +10,62 @@ import InfoIcon from "@mui/icons-material/Info";
 import Icon from "@mui/material/Icon";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
+import { FeedbackForm } from "../Feedback/FeedbackForm";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [isOpenFeedbackForm, setOpenFeedbackForm] = useState(false);
   const footerLink = [
     { id: "about", text: t("about"), link: "/", icon: InfoIcon },
     { id: "contacts", text: t("contacts"), link: "/", icon: ContactMailIcon },
     { id: "support", text: t("support"), link: "/", icon: SupportAgentIcon },
   ];
+
+  const openFeedbackForm = (id: string) => {
+    if (id === "support") {
+      setOpenFeedbackForm(true);
+    }
+  };
   return (
-    <Page>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-          sx={{
-            bgcolor: "transparent",
-            color: "#334366",
-            boxShadow: "none",
-            borderTop: 1,
-            borderColor: "#334366",
-          }}
-        >
-          <Toolbar sx={{ padding: 2}}>
-            <Stack
-              direction={{ xs: 'column', sm: 'row' }}
-              justifyContent="space-between"
-              alignItems={{ xs: 'start', sm: 'center' }}
-              spacing={{ xs: 1, sm: 2, md: 0 }}
-              sx={{ flexGrow: 1 }}
-            >
-              {footerLink.map((el, index) => (
-                <div className={styles.headerLink} key={index}>
-                  <Icon>{<el.icon></el.icon>}</Icon>
-                  <a className={styles.headerLinkText}>{el.text}</a>
-                </div>
-              ))}
-            </Stack>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </Page>
+    <>
+      <Page>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar
+            position="static"
+            sx={{
+              bgcolor: "transparent",
+              color: "#334366",
+              boxShadow: "none",
+              borderTop: 1,
+              borderColor: "#334366",
+            }}
+          >
+            <Toolbar sx={{ padding: 2 }}>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                justifyContent="space-between"
+                alignItems={{ xs: "start", sm: "center" }}
+                spacing={{ xs: 1, sm: 2, md: 0 }}
+                sx={{ flexGrow: 1 }}
+              >
+                {footerLink.map((el, index) => (
+                  <div className={styles.headerLink} key={index}>
+                    <Icon>{<el.icon></el.icon>}</Icon>
+                    <a
+                      className={styles.headerLinkText}
+                      onClick={() => openFeedbackForm(el.id)}
+                    >
+                      {el.text}
+                    </a>
+                  </div>
+                ))}
+              </Stack>
+            </Toolbar>
+          </AppBar>
+        </Box>
+      </Page>
+      <FeedbackForm isShow={isOpenFeedbackForm}/>
+    </>
   );
 };
 export default Footer;
