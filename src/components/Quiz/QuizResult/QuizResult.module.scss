@@ -8,28 +8,13 @@
         width: 90%; 
     }
   }
-  &Button {
-    background-color: #2c6cb0;
-    border: none;
-    outline: none;
-    padding: 1rem;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1rem;
-    width: 210px;
-    margin-top: 2rem;
-    cursor: pointer;
-
-    @media screen and (min-width: 768px) {
-        margin-top: 2rem;
-    }
-  }
 
   &List {
     width: 100%;
     margin-top: 2rem;
     border-radius: 17px;
     padding: 1rem;
+    margin-bottom: 2rem;
   }
 
   &Container {

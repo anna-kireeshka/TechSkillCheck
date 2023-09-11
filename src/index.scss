@@ -11,6 +11,7 @@ body {
 }
 
 .layout  {
+  position: relative;
   @include themify($themes) {
     background: themed('colorBackground');
     color: themed('colorText');
@@ -25,6 +26,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.recapcha {
+  margin-bottom: 2rem;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -61,24 +66,11 @@ a {
   src: url('assets/fonts/MontserratAlternates-Bold.ttf') format('truetype');
   font-weight: 700;
 }
+
 .container {
   display: flex;
 }
-.MuiAppBar-root {
-  @include themify($themes) {
-    background: themed('colorBackground');
-    color: themed('colorText');
-  }
-}
-.MuiIconButton-root:hover,
-.MuiButton-root:hover {
-    @include themify($themes) {
-      background-color: themed('bgHeaderButtonHover');
-  }
-}
-.MuiBox-root {
-  height: 100%;
-}
+
 h1 {
   font-size: 46px;
   @media (max-width: 575.98px) {
@@ -103,21 +95,21 @@ h3 {
 }
 $easy: cubic-bezier(0.39, 0.575, 0.565, 1);
 
-.route-animation-enter {
-  opacity: 0;
-  transform: translate3d(0, 100%, 0)
-}
-.route-animation-active {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition: opacity 500ms $easy, transform 500ms $easy;
-}
-.route-animation-exit {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-.route-animation-exit-active {
-  opacity: 0;
-  transform: translate3d(0, -100%, 0);
-  transition: opacity 500ms $easy, transform 500ms $easy;
-}
+// .route-animation-enter {
+//   opacity: 0;
+//   transform: translate3d(0, 100%, 0)
+// }
+// .route-animation-active {
+//   opacity: 1;
+//   transform: translate3d(0, 0, 0);
+//   transition: opacity 500ms $easy, transform 500ms $easy;
+// }
+// .route-animation-exit {
+//   opacity: 1;
+//   transform: translate3d(0, 0, 0);
+// }
+// .route-animation-exit-active {
+//   opacity: 0;
+//   transform: translate3d(0, -100%, 0);
+//   transition: opacity 500ms $easy, transform 500ms $easy;
+// }

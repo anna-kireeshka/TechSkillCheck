@@ -5,6 +5,7 @@ import CodeSyntaxHighlighter from "./CodeSyntaxHighlighter/CodeSyntaxHighlighter
 import CardList from "./CardList/CardList";
 import Card from "./Card/Card";
 import Modal from "./Modal/Modal";
+import SupportWidget from "./SupportWidget/SupportWidget"
 
 export {
     RadioButtonGroup, 
@@ -14,4 +15,5 @@ export {
     Card,
     Modal,
     Container,
+    SupportWidget,
 }

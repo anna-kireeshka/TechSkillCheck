@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useContext } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -10,25 +10,25 @@ import InfoIcon from "@mui/icons-material/Info";
 import Icon from "@mui/material/Icon";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
-import { FeedbackForm } from "../Feedback/FeedbackForm";
+import { ThemeContext } from '../../contexts/theme-context';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {getDesignTokens} from "../../shared/mui-theme"
+import Typography from '@mui/material/Typography';
 
 const Footer = () => {
   const { t } = useTranslation();
-  const [isOpenFeedbackForm, setOpenFeedbackForm] = useState(false);
+  const theme = useContext(ThemeContext);
+  const muiTheme = useMemo(() => createTheme(getDesignTokens(theme.theme)), [theme.theme]);
   const footerLink = [
     { id: "about", text: t("about"), link: "/", icon: InfoIcon },
     { id: "contacts", text: t("contacts"), link: "/", icon: ContactMailIcon },
-    { id: "support", text: t("support"), link: "/", icon: SupportAgentIcon },
+    // { id: "support", text: t("support"), link: "/", icon: SupportAgentIcon },
   ];
 
-  const openFeedbackForm = (id: string) => {
-    if (id === "support") {
-      setOpenFeedbackForm(true);
-    }
-  };
   return (
     <>
       <Page>
+        <ThemeProvider theme={muiTheme}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar
             position="static"
@@ -50,12 +50,11 @@ const Footer = () => {
               >
                 {footerLink.map((el, index) => (
                   <div className={styles.headerLink} key={index}>
-                    <Icon>{<el.icon></el.icon>}</Icon>
+                    <Icon color="primary">{<el.icon></el.icon>}</Icon>
                     <a
                       className={styles.headerLinkText}
-                      onClick={() => openFeedbackForm(el.id)}
                     >
-                      {el.text}
+                      <Typography variant="body1" sx={{ color: `${muiTheme.palette.primary.dark}` }}>{el.text}</Typography>
                     </a>
                   </div>
                 ))}
@@ -63,8 +62,8 @@ const Footer = () => {
             </Toolbar>
           </AppBar>
         </Box>
+        </ThemeProvider>
       </Page>
-      <FeedbackForm isShow={isOpenFeedbackForm}/>
     </>
   );
 };

@@ -19,7 +19,15 @@ i18n.use(initReactI18next).init({
         support: "Write to support",
         contacts: "Contacts",
         nextQuestion: "Next",
-        finishQuiz: "Finish"
+        finishQuiz: "Finish",
+        formEmailError: "Please enter a valid email address",
+        formSubjectError: "Maximum text length 150 characters",
+        formMessageError: "Maximum text length 300 characters",
+        formLabelEmail: "Email",
+        formLabelSubject: "Message subject",
+        formLabelMessage: "Message text",
+        formButtonText: "Send",
+        widgetSupport: "Connect with us"
       }
     },
     ru: {
@@ -32,7 +40,15 @@ i18n.use(initReactI18next).init({
         support: "Написать в поддержку",
         contacts: "Контакты",
         nextQuestion: "Дальше",
-        finishQuiz: "Завершить"
+        finishQuiz: "Завершить",
+        formEmailError: "Пожауйста, введите корректный email адрес",
+        formSubjectError: "Длина текста не должна превышать 150 символов",
+        formMessageError: "Длина текста не должна превышать 300 символов",
+        formLabelEmail: "Email",
+        formLabelSubject: "Тема сообщения",
+        formLabelMessage: "Текст сообщения",
+        formButtonText: "Отправить",
+        widgetSupport: "Связаться с нами"
       }
     }
   },

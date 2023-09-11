@@ -61,3 +61,7 @@ export interface QuizResultDTO {
     correct_id: number
     };
 }
+
+export interface FormDTO {
+    [key: string]: string;
+}

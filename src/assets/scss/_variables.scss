@@ -13,21 +13,25 @@ $buttonColorBlue: #2C6CB0;
 $themes: (
   light: (
     colorHeaderFooter: #2C6CB0,
-    textLinkHeaderHover: #1169c7,
-    bgHeaderButtonHover: #29446215,
     colorText: #334366,
     colorBackground: #eff2f6,
     cardColor: #fff,
     cardBoxShadow: $boxShadow,
+    buttonColor: #e3efff,
+    buttonBg: #2677cd,
+    buttonBgHover: #1665b9,
+    modalBg: #fff,
   ),
   dark: (
     colorHeaderFooter: #e3efff,
-    textLinkHeaderHover: #a1c8fb,
     colorText: #becce9,
-    bgHeaderButtonHover: #b0d1fc43,
-    colorBackground:  #151c2a,
-    cardColor: #1e334e,
+    colorBackground:  #232f46,
+    cardColor: #253d5b,
     cardBoxShadow: 0 7px 20px 0 rgba(16, 29, 58, 0.3),
+    buttonColor: #151c2a,
+    buttonBg: #84add9,
+    buttonBgHover: #6291c4,
+    modalBg: #1e334e,
   ),
 );
 

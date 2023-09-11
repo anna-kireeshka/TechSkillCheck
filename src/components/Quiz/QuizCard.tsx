@@ -13,13 +13,14 @@ interface Props {
 const QuizCard: FC<Props> = ({ quiz, onNextQuestion }) => {
   const { t } = useTranslation();
   const { current, total, question, options } = quiz;
-  const [labelBtn, setLabelBtn] = useState(current < 10 ? t("nextQuestion") : t("finishQuiz"));
+  const [labelBtn, setLabelBtn] = useState(t("nextQuestion"));
   const [optionId, setOptionId] = useState<string | number>(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (optionId) {
       dispatch<any>(setAnswer(optionId));
+      setLabelBtn(current < total ? t("nextQuestion") : t("finishQuiz"))
     }
   }, [optionId]);
 ;

@@ -10,6 +10,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Icon from "@mui/material/Icon";
 import { LangContext } from "../../../contexts/lang-context"
+import Button from "../../UI/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 interface QuizResultIconProps {
     correctId: number;
@@ -37,6 +39,7 @@ const QuizResultIcon:FC<QuizResultIconProps> = ({correctId, answerId, currentId}
 const QuizResult = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const { lang } = useContext(LangContext);
 
   const [quizId, setQuizId] = useState(0);
@@ -79,6 +82,10 @@ const getCurrentAnswerColor = (currentId: number, optionId: number) =>{
     }
 }
 
+const getToTest = () => {
+  navigate(`direction`)
+}
+
   return (
     <Page>
       <Container>
@@ -105,7 +112,7 @@ const getCurrentAnswerColor = (currentId: number, optionId: number) =>{
               </div>
             </div>
           ))}
-          <button className={styles.quizResultButton}>Вернутся к тестам</button>
+          <Button onClickButton={getToTest}>Вернутся к тестам</Button>
         </div>
       </Container>
     </Page>
