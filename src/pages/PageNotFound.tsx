@@ -4,8 +4,6 @@ import {ThemeContext} from '../contexts/theme-context';
 
 import Box from "@mui/material/Box";
 import NotFound from "../components/UI/NotFound/NotFound";
-import Page from "../components/UI/Layout/Page/Page";
-import Container from "../components/UI/Layout/Container/Container";
 
 import NotFotFound from "../assets/image/notFound404.svg";
 
@@ -16,13 +14,9 @@ const PageNotFound = memo(() => {
 
     return (
         <Box sx={{flexGrow: 1}}>
-            <Page>
-                <Container>
-                    <div className={`${theme.theme}`}>
-                        <NotFound page={""} linkTitle={t("redirectLink")} image={NotFotFound} title={t("notFound")}/>
-                    </div>
-                </Container>
-            </Page>
+            <div className={`${theme.theme}`}>
+                <NotFound page={""} linkTitle={t("redirectLink")} image={NotFotFound} title={t("notFound")}/>
+            </div>
         </Box>
     );
 });

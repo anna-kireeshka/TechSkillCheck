@@ -11,6 +11,8 @@ import Box from "@mui/material/Box";
 import TechnologiesList from "../components/TechnologiesList/TechnologiesList";
 import Breadcrumbs from "../components/UI/Breadcrumbs/Breadcrumbs";
 import {getUrlId} from "../shared/helpers/transform";
+import NotFound from "../components/UI/NotFound/NotFound";
+import NotFotFound from "../assets/image/notFound.svg";
 
 const TechnologiesPage = () => {
     const {t} = useTranslation();
@@ -42,11 +44,23 @@ const TechnologiesPage = () => {
     return (
         <Box sx={{flexGrow: 1}}>
             <Breadcrumbs links={links}/>
-            {technologies.total > 1 && <h1>{t("technologyTitle")}</h1>}
-            <TechnologiesList
-                title={t("technologySubTitle")}
-                technologies={technologies}
-            />
+            {
+                technologies.total > 1 ? (
+                    <>
+                        <h1>{t("technologyTitle")}</h1>
+                        <TechnologiesList
+                            title={t("technologySubTitle")}
+                            technologies={technologies}
+                        />
+                    </>
+                ) : (
+                    <NotFound
+                        page={"directions"}
+                        linkTitle={t("redirectLinkToDirection")}
+                        image={NotFotFound}
+                        title={t("notFoundSection")}/>
+                )
+            }
         </Box>
     );
 };

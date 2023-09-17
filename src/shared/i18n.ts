@@ -50,7 +50,7 @@ i18n.use(initReactI18next).init({
                 contacts: "Контакты",
                 nextQuestion: "Дальше",
                 finishQuiz: "Завершить",
-                formEmailError: "Пожауйста, введите корректный email адрес",
+                formEmailError: "Пожалуйста, введите корректный email адрес",
                 formSubjectError: "Длина текста не должна превышать 150 символов",
                 formMessageError: "Длина текста не должна превышать 300 символов",
                 formLabelEmail: "Email",
@@ -60,9 +60,9 @@ i18n.use(initReactI18next).init({
                 formMessageSuccessfully: "Ваше обращение успещно отправлено",
                 widgetSupport: "Связаться с нами",
                 notFound: "Страница не найдена",
-                redirectLink: "Вернутся на главную",
-                redirectLinkToTechnologies: "Вернутся к выбору технологий",
-                redirectLinkToDirection: "Вернутся к выбору напрвалений",
+                redirectLink: "Вернуться на главную",
+                redirectLinkToTechnologies: "Вернуться к выбору технологий",
+                redirectLinkToDirection: "Вернуться к выбору направлений",
                 notFoundSection: "Раздел находится в разработке",
             }
         }

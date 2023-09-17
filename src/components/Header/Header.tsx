@@ -48,7 +48,7 @@ const Header = memo(() => {
                                 borderBottom: 1,
                                 borderColor: muiTheme.palette.primary.dark,
                             }}>
-                        <Toolbar>
+                        <Toolbar sx={{padding: 0}}>
                             <Stack
                                 direction="row"
                                 justifyContent="space-between"
@@ -56,11 +56,6 @@ const Header = memo(() => {
                                 sx={{flexGrow: 1}}
                             >
                                 <SupportWidget/>
-                                {/*<a href="/" className={styles.headerLink}>*/}
-                                {/*    <Typography variant="body1"*/}
-                                {/*                sx={{color: `${muiTheme.palette.primary.dark}`}}>{t("about")}*/}
-                                {/*    </Typography>*/}
-                                {/*</a>*/}
                                 <Stack direction="row">
                                     <IconButton
                                         size="large"

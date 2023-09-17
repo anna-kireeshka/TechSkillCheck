@@ -23,7 +23,7 @@ const DirectionsPage = memo(() => {
 
     return (
         <Box sx={{flexGrow: 1}}>
-            <h1 className="card-heading">{t("directionTitle")}</h1>
+            <h1>{t("directionTitle")}</h1>
             <Directions title={t("directionSubTitle")} directions={directions}/>
         </Box>
     );

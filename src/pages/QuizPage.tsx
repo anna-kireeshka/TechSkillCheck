@@ -6,13 +6,15 @@ import {useTranslation} from "react-i18next";
 import {LangContext} from "../contexts/lang-context";
 import {ThemeContext} from "../contexts/theme-context";
 
-import {fetchQuiz, getQuiz} from "../store/quiz";
+import {fetchQuiz, getLoadingStatus, getQuiz} from "../store/quiz";
 
 import Breadcrumbs from "../components/UI/Breadcrumbs/Breadcrumbs";
 import Box from "@mui/material/Box";
 import Quiz from "../components/Quiz/Quiz";
 
 import {getUrlId} from "../shared/helpers/transform";
+import NotFound from "../components/UI/NotFound/NotFound";
+import NotFotFound from "../assets/image/notFound.svg";
 
 const QuizPage = memo(() => {
     const dispatch = useDispatch();
@@ -20,6 +22,7 @@ const QuizPage = memo(() => {
     const {theme} = useContext(ThemeContext);
     const {lang} = useContext(LangContext);
     const location = useLocation();
+    const LoadingStatus = useSelector(getLoadingStatus)
 
     const [technologyId, setTechnologyId] = useState(0);
 
@@ -46,11 +49,23 @@ const QuizPage = memo(() => {
     return (
         <Box sx={{flexGrow: 1}}>
             <Breadcrumbs links={links}/>
-            <div className={`${theme}`}>
-                <Quiz quiz={quiz} lang={lang}/>
-            </div>
+            {
+                LoadingStatus === 'succeeded' ? (
+                    <div className={`${theme}`}>
+                        <Quiz quiz={quiz} lang={lang}/>
+                    </div>
+                ) : (
+                    <NotFound
+                        page={`technologies/${technologyId}}`}
+                        linkTitle={t("redirectLinkToTechnologies")}
+                        title={t("redirectLinkToTechnologies")}
+                        image={NotFotFound}
+                    />
+                )
+            }
         </Box>
     );
 });
+
 
 export default QuizPage;

@@ -1,15 +1,18 @@
 import React, {FC, useEffect, useState} from "react";
-import {Container, Page} from "../UI/index";
-import {fetchNextQuiz, getOptionId} from "../../store/quiz";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useNavigate} from "react-router-dom";
-import {QuizDTO} from "../../shared/types/types";
-import QuizCard from "./QuizCard";
-import "./Quiz.scss";
-import NotFound from "../UI/NotFound/NotFound";
 import {useTranslation} from "react-i18next";
-import NotFotFound from "../../assets/image/notFound.svg";
+
+import {fetchNextQuiz, getOptionId} from "../../store/quiz";
+
+import QuizCard from "./QuizCard";
+import Container from "../UI/Layout/Container/Container";
+import Page from "../UI/Layout/Page/Page";
+
 import {getUrlId} from "../../shared/helpers/transform";
+import {QuizDTO} from "../../shared/types/types";
+
+import "./Quiz.scss";
 
 interface Props {
     quiz: QuizDTO;
@@ -31,6 +34,7 @@ const Quiz: FC<Props> = ({quiz, lang}) => {
 
     useEffect(() => {
         const id = getUrlId(location.pathname)
+        console.log(quiz)
     }, [quiz, lang]);
     const onNextQuestion = () => {
         const query = {
@@ -41,37 +45,28 @@ const Quiz: FC<Props> = ({quiz, lang}) => {
         }
         dispatch<any>(fetchNextQuiz(query));
         if (current === 10) {
-            navigate(`/quiz/result/${quiz.id}`);
+            setTimeout(() => navigate(`/quiz/result/${quiz.id}`), 100);
         }
-    };
+    }
 
     return (
         <Page>
             <Container>
-                {question !== undefined ? (
-                    <div className="testContainer">
-                        <div className="testProgressInfo">
-                            <p className="testProgressInfoCount">
-                                {current} / {total}
-                            </p>
-                        </div>
-                        <div className="testProgress">
-                            <div
-                                className="testProgressBar"
-                                style={{width: getWidthProgressBar(current)}}
-                            ></div>
-                        </div>
-                        <QuizCard quiz={quiz} onNextQuestion={onNextQuestion}/>
+                <div className="testContainer">
+                    <div className="testProgressInfo">
+                        <p className="testProgressInfoCount">
+                            {current} / {total}
+                        </p>
                     </div>
-                ) : (
-                    <NotFound
-                        page={`technologies/${technologyId}}`}
-                        linkTitle={t("redirectLinkToTechnologies")}
-                        title={t("redirectLinkToTechnologies")}
-                        image={NotFotFound}
-                    />
-                )}
-
+                    <div className="testProgress">
+                        <div
+                            className="testProgressBar"
+                            style={{width: getWidthProgressBar(current)}}
+                        ></div>
+                    </div>
+                    <QuizCard quiz={quiz} onNextQuestion={onNextQuestion}/>
+                </div>
+                )
             </Container>
         </Page>
     );

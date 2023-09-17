@@ -70,6 +70,7 @@ const quizSlice = createSlice({
 export const getQuiz = (state: any) => state.quiz.data;
 export const getResult = (state: any) => state.quiz.result;
 export const getOptionId = (state: any) => state.quiz.optionId;
+export const getLoadingStatus = (state: any) => state.quiz.loading
 
 export const {setAnswer} = quizSlice.actions;
 export default quizSlice.reducer;
