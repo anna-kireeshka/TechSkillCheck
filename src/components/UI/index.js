@@ -6,6 +6,7 @@ import CardList from "./CardList/CardList";
 import Card from "./Card/Card";
 import Modal from "./Modal/Modal";
 import SupportWidget from "./SupportWidget/SupportWidget"
+import Button from "./Button/Button";
 
 export {
     RadioButtonGroup, 
@@ -16,4 +17,5 @@ export {
     Modal,
     Container,
     SupportWidget,
+    Button
 }

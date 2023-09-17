@@ -62,3 +62,15 @@ export const getInputFieldStyle = (mode: string) => {
         }
       };
 };
+
+export const getDialogStyle = (mode: string) => {
+  return mode === "light" ? {
+    "& .MuiPaper-root": {
+      background: "#fff"
+    }
+  } : {
+    "& .MuiPaper-root": {
+      background: "#1e334e"
+    }
+  }
+}

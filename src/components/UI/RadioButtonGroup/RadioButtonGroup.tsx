@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import DOMPurify from "dompurify";
-import styles from "./RadioButtonGroup.module.scss";
+import "./RadioButtonGroup.scss";
 import CodeSyntaxHighlighter from "../CodeSyntaxHighlighter/CodeSyntaxHighlighter";
 
 
@@ -18,12 +18,12 @@ interface Props {
 
 const RadioButtonGroup: FC<Props> = ({ list, onSetAnswer }) => {
   return (
-    <div className={styles.formGroup}>
+    <div className="formGroup">
       {list &&
         list.map((el: any) => (
           <div key={el.id}>
             <input
-              className={styles.formGroupInput}
+              className="formGroupInput"
               type="radio"
               id={el.id}
               name="radio"
@@ -31,12 +31,12 @@ const RadioButtonGroup: FC<Props> = ({ list, onSetAnswer }) => {
               onChange={() => onSetAnswer(el.id)}
             />
             {el.code ? (
-              <label className={styles.formGroupLabel} htmlFor={el.id}>
+              <label className="formGroupLabel" htmlFor={el.id}>
                 <CodeSyntaxHighlighter code={el.code} />
               </label>
             ) : (
               <label
-                className={styles.formGroupLabel}
+                className="formGroupLabel"
                 htmlFor={el.id}
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(el.text),

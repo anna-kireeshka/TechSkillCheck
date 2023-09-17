@@ -1,40 +1,32 @@
-import { useEffect, useState, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getTechnologies, fetchTechnologies } from "../../store/technologies";
-import { useLocation } from "react-router-dom";
+import {  FC } from "react";
 import { Page, CardList } from "../UI/index";
-import {LangContext} from '../../contexts/lang-context'
+import { TechnologiesDTO } from "../../shared/types/types";
 
 import styles from "./TechnologiesList.module.scss";
+import NotFound from "../UI/NotFound/NotFound";
+import {useTranslation} from "react-i18next";
+import NotFotFound from "../../assets/image/notFound.svg";
 
-const TechnologiesList = () => {
-  let location = useLocation();
-  const [directionId, setDirectionId] = useState(0);
-  const dispatch = useDispatch();
-  const { lang } = useContext(LangContext);
+interface Props {
+  title: string;
+  technologies: TechnologiesDTO;
+}
 
-  useEffect(() => {
-    const pathname = location.pathname.split("/");
-    const id = Number(pathname[pathname.length - 1]);
-    setDirectionId(id);
-  }, []);
-
-  useEffect(() => {
-    if (directionId > 0) {
-      const params = { id: directionId, lang: lang };
-      dispatch<any>(fetchTechnologies(params));
-    }
-  }, [directionId, lang]);
-
-  const technologies = useSelector(getTechnologies);
-
+const TechnologiesList:FC<Props> = ({title, technologies}) => {
+    const { t } = useTranslation();
   return (
     <Page>
       <div className={styles.technologies}>
-        <div className={styles.technologiesColumn}>
-          <h2 className={styles.technologiesSubHeading}>Выберите технологию</h2>
-          <CardList directionList={technologies} page={"technologies"} />
-        </div>
+      {
+        technologies.total > 1 ? (
+              <div className={styles.technologiesColumn}>
+                <h2 className={styles.technologiesSubHeading}>{title}</h2>
+                <CardList directionList={technologies} page={"technologies"} />
+              </div>
+        ) : (
+            <NotFound page={"directions"} linkTitle={t("redirectLinkToDirection")} image={NotFotFound} title={t("notFoundSection")}/>
+        )
+      }
       </div>
     </Page>
   );

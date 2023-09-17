@@ -13,7 +13,9 @@ const CodeSyntaxHighlighter: FC<PropsCodeLine> = ({ code }) => {
        return ( <SyntaxHighlighter
         language="javascript"
         style={theme.theme === 'light' ? monoBlue : atomOneDark}
-        lineNumberStyle
+        lineProps={{style: {wordBreak: 'break-all', whiteSpace: 'pre-wrap'}}}
+        showLineNumbers
+        wrapLines
       >
         {code}
       </SyntaxHighlighter>
