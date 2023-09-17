@@ -1,77 +1,67 @@
-import { useState, useMemo } from "react";
-import {
-  DirectionsPage,
-  TechnologiesPage,
-  QuizPage,
-  QuizResultPage,
-} from "./pages/index";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import React, {useState} from "react";
+import TechnologiesPage from "./pages/TechnologiesPage";
+import QuizPage from "./pages/QuizPage";
+import QuizResultPage from "./pages/QuizResult";
+import PageNotFound from "./pages/PageNotFound";
+import {BrowserRouter, Navigate, Route, Routes, useLocation,} from "react-router-dom";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import { SupportWidget } from "./components/UI/index"
-import { ThemeContext } from "./contexts/theme-context";
-import { LangContext } from "./contexts/lang-context";
+import {ThemeContext} from "./contexts/theme-context";
+import {LangContext} from "./contexts/lang-context";
+import DirectionsPage from "./pages/DirectionsPage";
+
 
 function AnimatedRoutes() {
-  const location = useLocation();
-  const timeout = { enter: 800, exit: 400 };
+    const location = useLocation();
 
-  return (
-    <TransitionGroup component={null}>
-      <CSSTransition
-        key={location.key}
-        classNames="route-animation"
-        timeout={timeout}
-        unmountOnExit
-      >
-        <Routes location={location}>
-          <Route path="/" element={<Navigate to="/directions" />} />
-          <Route path="/directions" element={<DirectionsPage />} />
-          <Route path="/technologies/:id" element={<TechnologiesPage />} />
-          <Route path="/quiz/:id" element={<QuizPage />} />
-          <Route path="/quiz/result/:id" element={<QuizResultPage />}></Route>
-        </Routes>
-      </CSSTransition>
-    </TransitionGroup>
-  );
+    return (
+        <TransitionGroup component={null}>
+            <CSSTransition
+                key={location.key}
+                classNames="route-animation"
+                timeout={300}
+                unmountOnExit
+            >
+                <Routes location={location}>
+                    <Route path="/" element={<Navigate to="/directions"/>}/>
+                    <Route path="/directions" element={<DirectionsPage/>}/>
+                    <Route path="/technologies/:id" element={<TechnologiesPage/>}/>
+                    <Route path="/quiz/:id" element={<QuizPage/>}/>
+                    <Route path="/quiz/result/:id" element={<QuizResultPage/>}/>
+                    <Route path="*" element={<PageNotFound/>}/>
+                </Routes>
+            </CSSTransition>
+        </TransitionGroup>
+    );
 }
 
 function App() {
-  const isBrowserDefaulDark = () =>
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isBrowserDefaulDark = () =>
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  const getDefaultTheme = (): string => {
-    const localStorageTheme = localStorage.getItem("default-theme");
-    const browserDefault = isBrowserDefaulDark() ? "dark" : "light";
-    return localStorageTheme || browserDefault;
-  };
+    const getDefaultTheme = (): string => {
+        const localStorageTheme = localStorage.getItem("default-theme");
+        const browserDefault = isBrowserDefaulDark() ? "dark" : "light";
+        return localStorageTheme || browserDefault;
+    };
 
-  const [theme, setTheme] = useState(getDefaultTheme());
-  const [lang, setLang] = useState("ru");
+    const [theme, setTheme] = useState(getDefaultTheme());
+    const [lang, setLang] = useState("ru");
 
-  return (
-    <LangContext.Provider value={{ lang, setLang }}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <div className={`theme-${theme}`}>
-          <div className="layout">
-            <Header />
-            <BrowserRouter>
-              <AnimatedRoutes />
-            </BrowserRouter>
-            <SupportWidget />
-            {/* <Footer /> */}
-          </div>
-        </div>
-      </ThemeContext.Provider>
-    </LangContext.Provider>
-  );
+    return (
+        <LangContext.Provider value={{lang, setLang}}>
+            <ThemeContext.Provider value={{theme, setTheme}}>
+                <div className={`theme-${theme}`}>
+                    <div className="layout">
+                        <Header/>
+                        <BrowserRouter>
+                            <AnimatedRoutes/>
+                        </BrowserRouter>
+                    </div>
+                </div>
+            </ThemeContext.Provider>
+        </LangContext.Provider>
+    );
 }
 
 export default App;

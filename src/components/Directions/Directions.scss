@@ -1,10 +1,8 @@
 .direction {
-  display: grid;
-  gap: 1rem;
-  place-items: center;
-  min-height: 100vh;
-  @media (min-width: 900px)  {
-    min-height: calc(100vh - 7rem);
+  width: 100%;
+  @media (min-width: 900px) {
+    padding-bottom: 0;
+    margin-top: -10rem;
   }
 
   &_column {

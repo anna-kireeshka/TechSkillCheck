@@ -1,34 +1,37 @@
 @import "../../../assets/scss/_variables.scss";
+
 .widget {
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    color: #fff;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  @include themify($themes) {
+    background: themed('buttonBg');
+  }
+
+  &-text {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
     @include themify($themes) {
-        background: themed('buttonBg');
+      color: themed('buttonColor');
     }
+  }
 
-    &-text {
-        margin-left: 0.5rem;
-        font-size: 1.2rem;
-        font-weight: 500;
-        @include themify($themes) {
-            color: themed('buttonColor');
-          }
+  &:hover {
+    @include themify($themes) {
+      background: themed('buttonBgHover');
     }
-
-    &:hover {
-        @include themify($themes) {
-            background: themed('buttonBgHover');
-        }
-    }
+  }
 }
 
 .widget-container {
-    position: absolute;
-    bottom: 2%;
-    right: 2%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
 }

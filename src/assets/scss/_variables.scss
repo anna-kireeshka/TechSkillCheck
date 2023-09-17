@@ -1,6 +1,6 @@
 $fontFamily: 'Montserrat Alternates';
 $mainFontColor: #334366;
-$whiteFontColor: #fff;
+$white: #fff;
 $linkColor: #2C6CB0;
 
 $lightWeight: 400;
@@ -12,26 +12,28 @@ $buttonColorBlue: #2C6CB0;
 
 $themes: (
   light: (
-    colorHeaderFooter: #2C6CB0,
     colorText: #334366,
     colorBackground: #eff2f6,
-    cardColor: #fff,
+    cardColor: $white,
     cardBoxShadow: $boxShadow,
     buttonColor: #e3efff,
     buttonBg: #2677cd,
     buttonBgHover: #1665b9,
-    modalBg: #fff,
+    modalBg: $white,
+    progressBarBg: #dcdce1,
+    radioChecked: #2C6CB0,
   ),
   dark: (
-    colorHeaderFooter: #e3efff,
-    colorText: #becce9,
-    colorBackground:  #232f46,
+    colorText: #e9f0ff,
+    colorBackground:  #15223a,
     cardColor: #253d5b,
-    cardBoxShadow: 0 7px 20px 0 rgba(16, 29, 58, 0.3),
+    cardBoxShadow: 0 7px 20px 0 rgb(16 23 41),
     buttonColor: #151c2a,
-    buttonBg: #84add9,
-    buttonBgHover: #6291c4,
+    buttonBg: #b5e7ff,
+    buttonBgHover: #7cc0ed,
     modalBg: #1e334e,
+    progressBarBg: #becce9,
+    radioChecked: #b5e7ff,
   ),
 );
 

@@ -9,7 +9,7 @@ export const store = configureStore({
         direction: directionsSlice,
         technology: technologiesSlice,
         quiz: quizSlice,
-        support: feedbackSlice,
+        feedback: feedbackSlice,
     },
 })
 

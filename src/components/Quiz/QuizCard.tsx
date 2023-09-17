@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
 import { RadioButtonGroup, CodeSyntaxHighlighter } from "../UI/index";
-import { useDispatch, useSelector } from "react-redux";
-import { getOptionId, setAnswer } from "../../store/quiz";
-import { fetchNextQuiz } from "../../store/quiz";
+import { useDispatch } from "react-redux";
+import { setAnswer } from "../../store/quiz";
 import { QuizDTO } from "../../shared/types/types";
 import { useTranslation } from "react-i18next";
+import { Button } from "../UI/index";
 
 interface Props {
   quiz: QuizDTO;
@@ -35,10 +35,12 @@ const QuizCard: FC<Props> = ({ quiz, onNextQuestion }) => {
         <p className="testQuestionTitle">{question?.text ?? ""}</p>
         <CodeSyntaxHighlighter code={question?.code ?? ""} />
       </div>
-      <RadioButtonGroup list={options} onSetAnswer={onSetAnswer} />
-      <button className="testButton" onClick={onNextQuestion}>
+      <div className="testQuestionAnsewrs">
+        <RadioButtonGroup list={options} onSetAnswer={onSetAnswer} />
+      </div>
+      <Button onClickButton={onNextQuestion}>
         {labelBtn}
-      </button>
+      </Button>
     </div>
   );
 };

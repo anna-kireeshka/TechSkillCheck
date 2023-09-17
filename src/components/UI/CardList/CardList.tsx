@@ -39,7 +39,7 @@ const CardList: FC<Props> = ({ directionList, page }) => {
             <h3 className={header}>{item?.name}</h3>
             <div className={imageStyle}>
              { item.image_url && <img
-                src={require(`../../../${item.image_url ?? ""}`)}
+                src={`${item.image_url ?? ""}`}
                 alt="Icon"
               />
              }
