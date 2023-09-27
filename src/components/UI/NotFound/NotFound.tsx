@@ -24,7 +24,7 @@ const NotFound: FC<Props> = ({page, linkTitle, image, title}) => {
                     <div className="not-found__image">
                         <img src={image} width={860} height={440} alt={t("buttonTitle")}/>
                     </div>
-                    <Button onClickButton={() => navigate(`/${page}`)}>{linkTitle}</Button>
+                    {linkTitle && <Button onClickButton={() => navigate(`/${page}`)}>{linkTitle}</Button>}
                 </div>
             </Container>
         </Page>
