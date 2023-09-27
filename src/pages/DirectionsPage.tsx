@@ -4,10 +4,12 @@ import {useTranslation} from "react-i18next";
 
 import {LangContext} from "../contexts/lang-context";
 
-import {fetchDirections, getDirections} from "../store/directions";
+import {fetchDirections, getDirections, getDirectionsStatus} from "../store/directions";
 
 import Directions from "../components/Directions/Directions";
 import Box from "@mui/material/Box";
+import NotFound from "../components/UI/NotFound/NotFound";
+import NotFotFound from "../assets/image/notFound.svg";
 
 const DirectionsPage = memo(() => {
     const {t} = useTranslation();
@@ -19,12 +21,27 @@ const DirectionsPage = memo(() => {
         dispatch<any>(fetchDirections(lang));
     }, [lang]);
 
+    const isLoading = useSelector(getDirectionsStatus)
+
     const directions = useSelector(getDirections);
 
     return (
         <Box sx={{flexGrow: 1}}>
             <h1>{t("directionTitle")}</h1>
-            <Directions title={t("directionSubTitle")} directions={directions}/>
+            {
+                isLoading === 'succeeded' ?
+                    (
+                        <Directions title={t("directionSubTitle")} directions={directions}/>
+                    ) : (
+                        <NotFound
+                            page={``}
+                            linkTitle={''}
+                            title={t("directionsNotFound")}
+                            image={NotFotFound}
+                        />
+                    )
+            }
+
         </Box>
     );
 });

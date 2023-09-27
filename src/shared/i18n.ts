@@ -35,6 +35,7 @@ i18n.use(initReactI18next).init({
                 redirectLinkToTechnologies: "Return to our technologies page",
                 redirectLinkToDirection: "Return to our direction page",
                 notFoundSection: "Section is under development",
+                directionsNotFound: "Directions not found"
             }
         },
         ru: {
@@ -64,6 +65,7 @@ i18n.use(initReactI18next).init({
                 redirectLinkToTechnologies: "Вернуться к выбору технологий",
                 redirectLinkToDirection: "Вернуться к выбору направлений",
                 notFoundSection: "Раздел находится в разработке",
+                directionsNotFound: "Направления не найдены"
             }
         }
     },

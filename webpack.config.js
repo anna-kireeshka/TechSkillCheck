@@ -14,8 +14,7 @@ module.exports = (env, arg) => {
             path: path.resolve(__dirname, 'build'),
             publicPath: '/',
             filename: "[name].[hash].js",
-            chunkFilename: '[name].js',
-            assetModuleFilename: 'src/assets/images/[name].[ext]'
+            clean: true,
         },
         resolve: {
             alias: {
@@ -25,8 +24,11 @@ module.exports = (env, arg) => {
             extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
         },
         devServer: {
-            host: 'localhost',
-            port: "3000",
+            static: {
+                directory: path.join(__dirname, 'public'),
+            },
+            compress: true,
+            port: 3000,
             historyApiFallback: true,
             open: true,
         },
@@ -63,7 +65,7 @@ module.exports = (env, arg) => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: "./public/index.html",
+                template: path.resolve(__dirname, 'public/index.html'),
                 minify: {
                     collapseWhitespace: isProduction,
                 },
