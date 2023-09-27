@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+
+}
+
+.layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  @include themify($themes) {
+    background: themed('colorBackground');
+    color: themed('colorText');
+  }
+
+  &::before {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    opacity: 0.4;
+    content: '';
+    background: no-repeat url("./assets/image/bg-left.svg");
+    bottom: 0;
+    left: 0;
+    @media screen and (min-width: 768px) {
+      width: 500px;
+      height: 600px;
+    }
+  }
+
+  &::after {
+    display: none;
+    @media screen and (min-width: 1024px) {
+      display: block;
+      position: absolute;
+      width: 500px;
+      height: 600px;
+      z-index: 0;
+      opacity: 0.4;
+      content: '';
+      background: no-repeat url("./assets/image/bg-right.svg");
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+#root {
+  position: relative;
+  height: auto;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+.recapcha {
+  margin-bottom: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+pre {
+  font-size: 0.85rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('assets/fonts/MontserratAlternates-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('assets/fonts/MontserratAlternates-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('assets/fonts/MontserratAlternates-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('assets/fonts/MontserratAlternates-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 46px;
+  @media (max-width: 575.98px) {
+    font-size: calc(46px / 2);
+  }
+}
+
+h2 {
+  font-size: 30px;
+  @media (max-width: 575.98px) {
+    font-size: 25px;
+  }
+}
+
+h3 {
+  font-size: 20px;
+  @media (max-width: 575.98px) {
+    font-size: 18px;
+  }
+}
+
+.card-heading {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.modal-text-center {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+$easy: cubic-bezier(0.39, 0.575, 0.565, 1);
+
+// .route-animation-enter {
+//   opacity: 0;
+//   transform: translate3d(0, 100%, 0)
+// }
+// .route-animation-active {
+//   opacity: 1;
+//   transform: translate3d(0, 0, 0);
+//   transition: opacity 500ms $easy, transform 500ms $easy;
+// }
+// .route-animation-exit {
+//   opacity: 1;
+//   transform: translate3d(0, 0, 0);
+// }
+// .route-animation-exit-active {
+//   opacity: 0;
+//   transform: translate3d(0, -100%, 0);
+//   transition: opacity 500ms $easy, transform 500ms $easy;
+// }

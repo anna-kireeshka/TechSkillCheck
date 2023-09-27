@@ -1,0 +1,26 @@
+@import "../../../assets/scss/_variables.scss";
+.button {
+    background-color: #2c6cb0;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    width: 210px;
+    cursor: pointer;
+    @include themify($themes) {
+        color: themed('buttonColor');
+        background: themed('buttonBg');
+      }
+
+      &:hover {
+        @include themify($themes) {
+            background: themed('buttonBgHover');
+        }
+    }
+
+    &-disabled {
+        pointer-events: none;
+    }
+}

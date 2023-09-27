@@ -1,0 +1,60 @@
+$fontFamily: 'Montserrat Alternates';
+$mainFontColor: #334366;
+$white: #fff;
+$linkColor: #2C6CB0;
+
+$lightWeight: 400;
+$boldWeight: 700;
+
+$boxShadow: 0px 7px 20px 0px rgba(58, 109, 139, 0.30);
+$borderRadius: 7px;
+$buttonColorBlue: #2C6CB0;
+
+$themes: (
+  light: (
+    colorText: #334366,
+    colorBackground: #eff2f6,
+    cardColor: $white,
+    cardBoxShadow: $boxShadow,
+    buttonColor: #e3efff,
+    buttonBg: #2677cd,
+    buttonBgHover: #1665b9,
+    modalBg: $white,
+    progressBarBg: #dcdce1,
+    radioChecked: #2C6CB0,
+  ),
+  dark: (
+    colorText: #e9f0ff,
+    colorBackground:  #15223a,
+    cardColor: #253d5b,
+    cardBoxShadow: 0 7px 20px 0 rgb(16 23 41),
+    buttonColor: #151c2a,
+    buttonBg: #b5e7ff,
+    buttonBgHover: #7cc0ed,
+    modalBg: #1e334e,
+    progressBarBg: #becce9,
+    radioChecked: #b5e7ff,
+  ),
+);
+
+@mixin themify($themes) {
+    @each $theme, $map in $themes {
+      .theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge(
+            $theme-map,
+              (
+                $key: $value,
+              )
+            ) !global;
+          }
+          @content;
+          $theme-map: null !global;
+        }
+     }
+  }
+  @function themed($key) {
+    @return map-get($theme-map, $key);
+  }

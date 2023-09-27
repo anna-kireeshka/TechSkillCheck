@@ -1,0 +1,19 @@
+.direction {
+  width: 100%;
+  @media (min-width: 900px) {
+    padding-bottom: 0;
+    margin-top: -10rem;
+  }
+
+  &_column {
+    width: 100%;
+  }
+
+  &_sub_heading {
+    text-align: center;
+    margin-bottom: 2rem;
+    @media (max-width: 575.98px) {
+      margin-bottom: 1rem;
+    }
+  }
+}

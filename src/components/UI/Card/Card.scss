@@ -1,0 +1,41 @@
+@import "../../../assets/scss/variables.scss";
+.card {
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 7px 20px 0 rgba(58, 109, 139, 0.30);
+  padding: 4rem 3rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  &_technologies {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @include themify($themes) {
+    background: themed('cardColor');
+    box-shadow: themed('cardBoxShadow');
+  }
+}
+.card:hover {
+  animation: cardAnimation 1s linear;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes  cardAnimation{
+  0% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,13 @@
+.breadcrumbs {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+
+  &__link {
+    text-decoration: underline;
+    display: flex;
+    @include themify($themes) {
+      color: themed('buttonBg');
+    }
+  }
+}
