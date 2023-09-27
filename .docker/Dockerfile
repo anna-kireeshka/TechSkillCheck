@@ -8,15 +8,11 @@ RUN npm ci && \
 COPY . .
 RUN npm run build
 
-FROM node:18-alpine3.17
+FROM node:18-alpine
 
 WORKDIR /app
-
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/.babelrc ./.babelrc
-
-RUN npm install --only=production --no-package-lock && \
+COPY --from=builder /app/build /app/package*.json /app/.babelrc ./
+RUN npm install --only=production --omit=dev --no-package-lock && \
     npm cache clean --force &&  \
     rm -rf node_modules
 
