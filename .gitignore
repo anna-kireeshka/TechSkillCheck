@@ -13,6 +13,7 @@
 
 # misc
 /api-mocker.xml
+.idea
 /.idea
 .DS_Store
 .env
