@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  web:
+  skillup-frontend:
     build:
       context: .
       dockerfile: .docker/Dockerfile
