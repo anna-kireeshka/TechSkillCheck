@@ -16,5 +16,6 @@ COPY --from=builder /app/build /app/package*.json /app/.babelrc ./
 RUN npm install --only=production --omit=dev --no-package-lock && \
     npm cache clean --force &&  \
     rm -rf node_modules
+RUN npm i webpack webpack-cli webpack-dev-server
 EXPOSE 3000
-CMD [ "npm", "run", "start-prod", "-y"]
+CMD [ "npm", "run", "start-prod"]
