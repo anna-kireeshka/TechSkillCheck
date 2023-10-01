@@ -11,10 +11,10 @@ docker-compose up -d --build
 REACT_APP_API=http://localhost:8080/api/v1
 
 # SECRET_KEY для капчи
-REACT_APP_RECAPCHA_SECRET_KEY=xxx
+REACT_APP_RECAPCHA_SECRET_KEY=RECAPCHA_SECRET_KEY
 
 # SITE_KEY для капчи
-REACT_APP_RECAPCHA_SITE_KEY=xxx
+REACT_APP_RECAPCHA_SITE_KEY=RECAPCHA_SITE_KEY
 ```
 
 # Структура проекта
