@@ -21,4 +21,4 @@ RUN npm install -g webpack webpack-cli
 
 EXPOSE 3000
 
-CMD ["npm", "start-prod"]
+CMD ["npm", "run", "start-prod"]
