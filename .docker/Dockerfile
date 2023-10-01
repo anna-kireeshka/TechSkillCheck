@@ -3,7 +3,8 @@ FROM node:18-slim as builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci && \
+COPY .babelrc ./
+RUN npm i && \
     npm cache clean --force
 COPY . .
 RUN npm run build
