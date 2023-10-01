@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import DOMPurify from "dompurify";
 import CodeSyntaxHighlighter from "../CodeSyntaxHighlighter/CodeSyntaxHighlighter";
 
-import "./RadioButtonGroup.scss";
+import './RadioButtonGroup.scss'
 
 
 interface Props {

@@ -6,5 +6,8 @@ declare module "dompurify";
 declare module "react-google-recaptcha";
 declare module "@types/react-google-recaptcha";
 declare module '*.svg';
-declare module '*.scss';
+declare module '*.scss' {
+    const content: string;
+    export default content;
+}
 

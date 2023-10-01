@@ -3,7 +3,8 @@ FROM node:18-slim as builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci && \
+COPY .babelrc ./
+RUN npm i && \
     npm cache clean --force
 COPY . .
 RUN npm run build
@@ -14,7 +15,7 @@ WORKDIR /app
 COPY --from=builder /app/build /app/package*.json /app/.babelrc ./
 RUN npm install --only=production --omit=dev --no-package-lock && \
     npm cache clean --force &&  \
-    rm -rf node_modules
+    rm -rf node_modules \
 
 EXPOSE 3000
 
