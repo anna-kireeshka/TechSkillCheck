@@ -15,7 +15,9 @@ WORKDIR /app
 COPY --from=builder /app/build /app/package*.json /app/.babelrc ./
 RUN npm install --only=production --omit=dev --no-package-lock && \
     npm cache clean --force &&  \
-    rm -rf node_modules \
+    rm -rf node_modules
+
+RUN npm install -g webpack webpack-cli
 
 EXPOSE 3000
 
