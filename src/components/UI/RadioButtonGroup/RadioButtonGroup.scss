@@ -1,0 +1,51 @@
+.formGroup {
+  position: relative;
+
+  &Input {
+    display: none;
+
+    &:checked + label {
+      @include themify($themes) {
+        color: themed("radioChecked");
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        border: 1px solid;
+        @include themify($themes) {
+          background-color: themed("radioChecked");
+          border-color: themed("radioChecked");
+        }
+      }
+    }
+  }
+
+  &Label {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    font-size: 0.9rem;
+    line-height: 1;
+    padding: 0.5rem 0;
+    margin-left: 2rem;
+    @media screen and (min-width: 768px) {
+      line-height: 1.2;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      display: block;
+      border-radius: 50%;
+      border: 1px solid #b5b5b5;
+      background: transparent;
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
