@@ -19,4 +19,4 @@ RUN npm install --only=production --omit=dev && \
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "build"]
+CMD ["serve", "build"]

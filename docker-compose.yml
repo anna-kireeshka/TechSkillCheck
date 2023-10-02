@@ -10,3 +10,12 @@ services:
     volumes:
       - '.:/app'
       - './node_modules:/app/node_modules'
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256M
+        reservations:
+          cpus: '0.3'
+          memory: 32M
+    stdin_open: true
