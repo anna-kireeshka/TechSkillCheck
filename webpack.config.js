@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-module.exports = (env, arg) => {
+module.exports = function override(env, arg) {
     const isProduction = arg.mode === 'production'
     return {
         entry: "./src/index.tsx",
@@ -40,11 +40,10 @@ module.exports = (env, arg) => {
                     use: ["babel-loader"],
                 },
                 {
-                    test: /.s?css$/,
+                    test: /.scss$/,
                     exclude: /node_modules/,
                     use: [
-                        MiniCssExtractPlugin.loader,
-                        'css-loader',
+                        {loader: "css-loader", options: {modules: true}},
                         {
                             loader: 'sass-loader',
                             options: {
@@ -59,7 +58,7 @@ module.exports = (env, arg) => {
                 },
                 {
                     test: /\.(png|jpg|gif|svg|webp)$/,
-                    type: 'asset/resource'
+                    use: ["url-loader"]
                 },
             ],
         },

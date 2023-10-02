@@ -3,10 +3,10 @@ name: skillup
 services:
   frontend:
     build:
-      context: .
+      context: ./
       dockerfile: .docker/Dockerfile
     ports:
       - '3001:3000'
     volumes:
       - '.:/app'
-    stdin_open: true
+      - '/app/node_modules'

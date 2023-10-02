@@ -5,8 +5,6 @@ import {ThemeContext} from '../contexts/theme-context';
 import Box from "@mui/material/Box";
 import NotFound from "../components/UI/NotFound/NotFound";
 
-import NotFotFound from "../assets/image/notFound404.svg";
-
 
 const PageNotFound = memo(() => {
     const theme = useContext(ThemeContext);

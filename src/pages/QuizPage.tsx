@@ -14,7 +14,7 @@ import Quiz from "../components/Quiz/Quiz";
 
 import {getUrlId} from "../shared/helpers/transform";
 import NotFound from "../components/UI/NotFound/NotFound";
-import NotFotFound from "../assets/image/notFound.svg";
+import NotFotFound from "../components/Icon/NotFound404";
 
 const QuizPage = memo(() => {
     const dispatch = useDispatch();

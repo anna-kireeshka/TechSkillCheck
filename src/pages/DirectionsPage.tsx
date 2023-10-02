@@ -9,7 +9,7 @@ import {fetchDirections, getDirections, getDirectionsStatus} from "../store/dire
 import Directions from "../components/Directions/Directions";
 import Box from "@mui/material/Box";
 import NotFound from "../components/UI/NotFound/NotFound";
-import NotFotFound from "../assets/image/notFound.svg";
+import NotFotFound from "../components/Icon/NotFound404";
 
 const DirectionsPage = memo(() => {
     const {t} = useTranslation();

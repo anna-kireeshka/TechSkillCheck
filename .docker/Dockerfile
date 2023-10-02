@@ -1,21 +1,29 @@
-FROM node:18-slim as builder
+FROM node:16-slim as builder
 
 WORKDIR /app
+
+ENV PATH="/app/node_modules/.bin:$PATH"
 
 COPY package*.json ./
 COPY .babelrc ./
-RUN npm i && \
-    npm cache clean --force
+
+RUN npm install
+#RUN npm install react-scripts -g
+#RUN npm i -g webpack webpack-cli
 COPY . .
+COPY webpack.config.js ./
 RUN npm run build
 
-FROM node:18-alpine
+FROM node:16-alpine
 
 WORKDIR /app
 COPY --from=builder /app/build /app/package*.json /app/.babelrc ./
-RUN npm install --only=production --omit=dev --no-package-lock && \
-    npm cache clean --force &&  \
-    rm -rf node_modules
-RUN npm i webpack webpack-cli webpack-dev-server
+RUN npm install && \
+    npm cache clean --force
+
 EXPOSE 3000
-CMD [ "npm", "run", "start-prod"]
+#COPY webpack.config.js ./
+CMD ["npm", "start"]
+
+
+#CMD [ "npm", "run", "start-prod"]
