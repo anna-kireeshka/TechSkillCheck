@@ -14,7 +14,6 @@ import Quiz from "../components/Quiz/Quiz";
 
 import {getUrlId} from "../shared/helpers/transform";
 import NotFound from "../components/UI/NotFound/NotFound";
-import NotFotFound from "../components/Icon/NotFound404";
 
 const QuizPage = memo(() => {
     const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const QuizPage = memo(() => {
                         page={`technologies/${technologyId}}`}
                         linkTitle={t("redirectLinkToTechnologies")}
                         title={t("redirectLinkToTechnologies")}
-                        image={NotFotFound}
+                        image={"section"}
                     />
                 )
             }

@@ -13,7 +13,7 @@ const PageNotFound = memo(() => {
     return (
         <Box sx={{flexGrow: 1}}>
             <div className={`${theme.theme}`}>
-                <NotFound page={""} linkTitle={t("redirectLink")} image={NotFotFound} title={t("notFound")}/>
+                <NotFound page={""} linkTitle={t("redirectLink")} image={"404"} title={t("notFound")}/>
             </div>
         </Box>
     );

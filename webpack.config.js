@@ -47,7 +47,7 @@ module.exports = function override(env, arg) {
                         {
                             loader: 'sass-loader',
                             options: {
-                                additionalData: '@import "src/assets/scss/_variables.scss";',
+                                additionalData: '@import "../src/assets/scss/_variables.scss";',
                             },
                         },
                     ]

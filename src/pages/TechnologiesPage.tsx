@@ -12,7 +12,6 @@ import TechnologiesList from "../components/TechnologiesList/TechnologiesList";
 import Breadcrumbs from "../components/UI/Breadcrumbs/Breadcrumbs";
 import {getUrlId} from "../shared/helpers/transform";
 import NotFound from "../components/UI/NotFound/NotFound";
-import NotFotFound from "../components/Icon/NotFound404";
 
 const TechnologiesPage = () => {
     const {t} = useTranslation();
@@ -57,7 +56,7 @@ const TechnologiesPage = () => {
                     <NotFound
                         page={"directions"}
                         linkTitle={t("redirectLinkToDirection")}
-                        image={NotFotFound}
+                        image={"section"}
                         title={t("notFoundSection")}/>
                 )
             }
