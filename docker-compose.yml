@@ -9,7 +9,6 @@ services:
       - '3001:3000'
     volumes:
       - '.:/app'
-      - './build:/app/build'
     deploy:
       resources:
         limits:
