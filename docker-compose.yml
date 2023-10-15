@@ -1,3 +1,26 @@
+#version: '3.8'
+#name: skillup
+#services:
+#  frontend:
+#    build:
+#      context: .
+#      dockerfile: .docker/Dockerfile
+#    container_name: skillup-frontend
+#    ports:
+#      - '3001:3000'
+#    #    volumes:
+#    #      - ./:/app
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 256MB
+#        reservations:
+#          cpus: '0.3'
+#          memory: 32M
+#    stdin_open: true
+#
+
+
 version: '3.8'
 name: skillup
 services:
@@ -7,9 +30,6 @@ services:
     container_name: skillup-frontend
     ports:
       - '3001:3000'
-    volumes:
-      - ./src:/app/src
-      - ./build:/app/build
     deploy:
       resources:
         limits:
