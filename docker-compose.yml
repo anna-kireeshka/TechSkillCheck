@@ -3,13 +3,13 @@ name: skillup
 services:
   frontend:
     build:
-      context: ./
-      dockerfile: .docker/Dockerfile
+      dockerfile: ./.docker/Dockerfile
+    container_name: skillup-frontend
     ports:
       - '3001:3000'
     volumes:
-      - '.:/app'
-      - './build:/app/build'
+      - ./src:/app/src
+      - ./build:/app/build
     deploy:
       resources:
         limits:

@@ -1,6 +1,6 @@
-FROM node:16-alpine as builder
+FROM node:16-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build && npm prune --production
+RUN npm run build
