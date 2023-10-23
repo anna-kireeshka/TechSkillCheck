@@ -1,6 +1,7 @@
 node_modules/
 npm-debug.log
 .DS_Store
+.npmrc
 .env
 .env.local
 .env.development.local
@@ -13,3 +14,6 @@ npm-debug.log
 *.test.js
 *.test.ts
 *.test.tsx
+**/.git
+**/.DS_Store
+**/node_modules
