@@ -1,7 +1,6 @@
-
-export interface  InitialState<T> {
+export interface InitialState<T> {
     data: T;
-    loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+    loading: 'idle' | 'pending' | 'loading' | 'failed'
 }
 
 export interface NextTestQueryRequest {

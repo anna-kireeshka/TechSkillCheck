@@ -3,15 +3,14 @@ import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 
-import {LangContext} from "../contexts/lang-context";
+import {LangContext} from "contexts/lang-context";
+import {fetchTechnologies, getTechnologies} from "store/technologies";
+import {getUrlId} from "shared/helpers/transform";
 
-import {fetchTechnologies, getTechnologies} from "../store/technologies";
-
-import Box from "@mui/material/Box";
-import TechnologiesList from "../components/TechnologiesList/TechnologiesList";
-import Breadcrumbs from "../components/UI/Breadcrumbs/Breadcrumbs";
-import {getUrlId} from "../shared/helpers/transform";
-import NotFound from "../components/UI/NotFound/NotFound";
+import TechnologiesList from "components/TechnologiesList/TechnologiesList";
+import Breadcrumbs from "components/UI/Breadcrumbs/Breadcrumbs";
+import NotFound from "components/UI/NotFound/NotFound";
+import Page from "components/UI/Layout/Page/Page";
 
 const TechnologiesPage = () => {
     const {t} = useTranslation();
@@ -41,14 +40,14 @@ const TechnologiesPage = () => {
     ]
 
     return (
-        <Box sx={{flexGrow: 1}}>
+        <Page>
             <Breadcrumbs links={links}/>
             {
                 technologies.total > 1 ? (
                     <>
-                        <h1>{t("technologyTitle")}</h1>
                         <TechnologiesList
-                            title={t("technologySubTitle")}
+                            title={t("technologyTitle")}
+                            subTitle={t("technologySubTitle")}
                             technologies={technologies}
                         />
                     </>
@@ -60,7 +59,7 @@ const TechnologiesPage = () => {
                         title={t("notFoundSection")}/>
                 )
             }
-        </Box>
+        </Page>
     );
 };
 

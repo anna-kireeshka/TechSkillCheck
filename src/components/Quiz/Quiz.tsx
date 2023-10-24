@@ -1,16 +1,12 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import {useNavigate} from "react-router-dom";
 
-import {fetchNextQuiz, getOptionId} from "../../store/quiz";
+import {fetchNextQuiz, getOptionId, setAnswer} from "store/quiz";
+import {QuizDTO} from "shared/types/types";
 
-import QuizCard from "./QuizCard";
-import Container from "../UI/Layout/Container/Container";
-import Page from "../UI/Layout/Page/Page";
-
-import {getUrlId} from "../../shared/helpers/transform";
-import {QuizDTO} from "../../shared/types/types";
+import QuizCard from "components/QuizCard/QuizCard";
+import ContainerCenter from "components/UI/Layout/ContainerCenter/ContainerCenter";
 
 import "./Quiz.scss";
 
@@ -20,11 +16,8 @@ interface Props {
 }
 
 const Quiz: FC<Props> = ({quiz, lang}) => {
-    const {t} = useTranslation()
-    const [technologyId, setTechnologyId] = useState(0)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const {current, total, question} = quiz;
     const updatedOptionId = useSelector(getOptionId);
 
@@ -33,8 +26,6 @@ const Quiz: FC<Props> = ({quiz, lang}) => {
     };
 
     useEffect(() => {
-        const id = getUrlId(location.pathname)
-        console.log(quiz)
     }, [quiz, lang]);
     const onNextQuestion = () => {
         const query = {
@@ -44,31 +35,30 @@ const Quiz: FC<Props> = ({quiz, lang}) => {
             lang: lang,
         }
         dispatch<any>(fetchNextQuiz(query));
+        dispatch<any>(setAnswer(0));
         if (current === 10) {
             setTimeout(() => navigate(`/quiz/result/${quiz.id}`), 100);
         }
     }
 
     return (
-        <Page>
-            <Container>
-                <div className="testContainer">
-                    <div className="testProgressInfo">
-                        <p className="testProgressInfoCount">
-                            {current} / {total}
-                        </p>
-                    </div>
-                    <div className="testProgress">
-                        <div
-                            className="testProgressBar"
-                            style={{width: getWidthProgressBar(current)}}
-                        ></div>
-                    </div>
-                    <QuizCard quiz={quiz} onNextQuestion={onNextQuestion}/>
+        <ContainerCenter>
+            <div className="testContainer">
+                <div className="testProgressInfo">
+                    <p className="testProgressInfoCount">
+                        {current} / {total}
+                    </p>
                 </div>
-                )
-            </Container>
-        </Page>
+                <div className="testProgress">
+                    <div
+                        className="testProgressBar"
+                        style={{width: getWidthProgressBar(current)}}
+                    ></div>
+                </div>
+                <QuizCard quiz={quiz} onNextQuestion={onNextQuestion} updatedOptionId={updatedOptionId}/>
+            </div>
+            )
+        </ContainerCenter>
     );
 };
 

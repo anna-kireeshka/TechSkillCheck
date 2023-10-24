@@ -54,11 +54,14 @@ const quizSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(fetchQuiz.fulfilled, (state, action) => {
-                state.loading = "succeeded";
                 state.data = action.payload;
+                if (action.payload === '' || action.payload === null) {
+                    state.loading = "failed";
+                } else {
+                    state.loading = "loading"
+                }
             })
             .addCase(fetchNextQuiz.fulfilled, (state, action) => {
-                state.loading = "succeeded";
                 state.data = action.payload;
             })
             .addCase(fetchResultQuiz.fulfilled, (state, action) => {

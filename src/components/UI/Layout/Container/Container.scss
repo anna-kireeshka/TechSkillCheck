@@ -1,12 +1,10 @@
 .container {
   width: 100%;
+  height: 100%;
   display: flex;
-  height: auto;
-  min-height: calc(100vh - 64px);
-  align-items: center;
-  justify-content: center;
-
+  flex-direction: column;
+  margin: 1rem auto;
   @media screen and (min-width: 786px) {
-    margin: 0;
+    margin: 2rem auto;
   }
 }

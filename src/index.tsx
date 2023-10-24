@@ -4,7 +4,7 @@ import "./index.scss";
 import {store} from "./store/store";
 import {Provider} from "react-redux";
 import App from "./App";
-import '../src/shared/i18n';
+import './shared/i18n';
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

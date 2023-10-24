@@ -2,13 +2,13 @@ import React, {memo, useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 
-import {LangContext} from "../contexts/lang-context";
+import {LangContext} from "contexts/lang-context";
 
-import {fetchDirections, getDirections, getDirectionsStatus} from "../store/directions";
+import {fetchDirections, getDirections, getDirectionsStatus} from "store/directions";
 
-import Directions from "../components/Directions/Directions";
-import Box from "@mui/material/Box";
-import NotFound from "../components/UI/NotFound/NotFound";
+import Directions from "components/Directions/Directions";
+import NotFound from "components/UI/NotFound/NotFound";
+import Page from "components/UI/Layout/Page/Page";
 
 const DirectionsPage = memo(() => {
     const {t} = useTranslation();
@@ -25,12 +25,14 @@ const DirectionsPage = memo(() => {
     const directions = useSelector(getDirections);
 
     return (
-        <Box sx={{flexGrow: 1}}>
-            <h1>{t("directionTitle")}</h1>
+        <Page>
             {
-                isLoading === 'succeeded' ?
+                isLoading === 'loading' ?
                     (
-                        <Directions title={t("directionSubTitle")} directions={directions}/>
+                        <Directions
+                            title={t("directionTitle")}
+                            subTitle={t("directionSubTitle")}
+                            directions={directions}/>
                     ) : (
                         <NotFound
                             page={``}
@@ -41,7 +43,7 @@ const DirectionsPage = memo(() => {
                     )
             }
 
-        </Box>
+        </Page>
     );
 });
 

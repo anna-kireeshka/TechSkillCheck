@@ -1,10 +1,11 @@
 import React, {FC, memo} from "react";
-import Page from "../Layout/Page/Page";
-import "./Breadcrumbs.scss";
 import {NavLink} from "react-router-dom";
+
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Icon from "@mui/material/Icon";
 
+import Page from "components/UI/Layout/Page/Page";
+import "./Breadcrumbs.scss";
 
 interface Props {
     links: {
@@ -15,16 +16,6 @@ interface Props {
 }
 
 const Breadcrumbs: FC<Props> = memo(({links}) => {
-    // const getStylelink = (active: boolean) => {
-    //     console.log(active, 'active')
-    // console.log(links)
-    // const style = cx([
-    //     "breadcrumbs__link",
-    //     {
-    //         active: links[0].isActive,
-    //     },
-    // ]);
-    // // }
 
     return (
         <Page>

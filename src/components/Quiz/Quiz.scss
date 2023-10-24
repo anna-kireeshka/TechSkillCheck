@@ -17,7 +17,7 @@
   &Card {
     border-radius: 20px;
     padding: 2rem 1rem;
-
+    margin: 2rem auto;
     display: flex;
     flex-direction: column;
     @include themify($themes) {
@@ -26,6 +26,7 @@
     }
     @media screen and (min-width: 786px) {
       padding: 2rem;
+      margin: 0 auto;
     }
   }
 
@@ -89,7 +90,9 @@
     }
 
     &Bar {
-      background: #2c6cb0;
+      @include themify($themes) {
+        background: themed("radioChecked");
+      }
       top: 0;
       left: 0;
       z-index: 2;

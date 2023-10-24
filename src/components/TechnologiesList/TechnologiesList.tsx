@@ -1,24 +1,30 @@
 import {FC} from "react";
-import {CardList, Page} from "../UI/index";
-import {TechnologiesDTO} from "../../shared/types/types";
-import {useTranslation} from "react-i18next";
+
+import {TechnologiesDTO} from "shared/types/types";
+
+import CardList from "components/UI/CardList/CardList";
+import Container from "components/UI/Layout/Container/Container";
+import ContainerCenter from "components/UI/Layout/ContainerCenter/ContainerCenter";
 
 interface Props {
     title: string;
+    subTitle: string;
     technologies: TechnologiesDTO;
 }
 
-const TechnologiesList: FC<Props> = ({title, technologies}) => {
-    const {t} = useTranslation();
+const TechnologiesList: FC<Props> = ({title, technologies, subTitle}) => {
     return (
-        <Page>
-            <div className="technologies">
-                <div className="technologiesColumn">
-                    <h2 className="technologiesSubHeading">{title}</h2>
-                    <CardList directionList={technologies} page={"technologies"}/>
+        <Container>
+            <h1>{title}</h1>
+            <ContainerCenter>
+                <div className="technologies">
+                    <div className="technologiesColumn">
+                        <h2>{subTitle}</h2>
+                        <CardList directionList={technologies} page={"technologies"}/>
+                    </div>
                 </div>
-            </div>
-        </Page>
+            </ContainerCenter>
+        </Container>
     );
 };
 export default TechnologiesList;

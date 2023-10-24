@@ -2,9 +2,13 @@
 
 
 .breadcrumbs {
-  margin-top: 2rem;
+  margin: 2rem 0;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
 
   &__link {
     text-decoration: underline;

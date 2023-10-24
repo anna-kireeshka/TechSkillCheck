@@ -1,16 +1,20 @@
 import React, {FC, RefObject, useContext, useEffect, useMemo, useRef, useState,} from "react";
-import {Modal} from "../UI/index";
-import TextField from "@mui/material/TextField";
-import Button from "../UI/Button/Button";
-import {FormDTO} from "../../shared/types/types";
-import ReCAPTCHA from "react-google-recaptcha";
-import {ThemeContext} from "../../contexts/theme-context";
-import {createTheme, styled, ThemeProvider} from "@mui/material/styles";
-import {getDesignTokens, getInputFieldStyle} from "../../shared/mui-theme";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
-import {LangContext} from "../../contexts/lang-context";
-import {fetchFeedback, statusFeedback} from "../../store/feedback";
+import ReCAPTCHA from "react-google-recaptcha";
+
+import TextField from "@mui/material/TextField";
+import {createTheme, styled, ThemeProvider} from "@mui/material/styles";
+
+import {getDesignTokens, getInputFieldStyle} from "shared/mui-theme";
+import {FormDTO} from "shared/types/types";
+import {LangContext} from "contexts/lang-context";
+import {ThemeContext} from "contexts/theme-context";
+import {validateEmail, validateTextarea} from "shared/helpers/validate"
+import {fetchFeedback, statusFeedback} from "store/feedback";
+
+import Modal from "components/UI/Modal/Modal";
+import Button from "components/UI/Button/Button";
 
 interface Props {
     isShow: boolean;
@@ -77,14 +81,13 @@ const FeedbackForm: FC<Props> = ({
 
     const validateValues = (inputValues: FormDTO) => {
         const errors = {} as FormDTO;
-        const regEmail = /^[a-zA-Z0-9._-]+@[a-z0-9-]+\.[a-zA-Z]{2,4}$/;
-        if (!regEmail.test(inputValues.email) && inputValues.email.length) {
+        if (validateEmail(inputValues.email)) {
             errors.email = t("formEmailError");
         }
-        if (inputValues.subject.length > 150 && inputValues.subject.length) {
+        if (validateTextarea(inputValues.subject, 150)) {
             errors.subject = t("formSubjectError");
         }
-        if (inputValues.message.length > 300 && inputValues.message.length) {
+        if (validateTextarea(inputValues.subject, 300)) {
             errors.message = t("formMessageError");
         }
         return setErrors(errors);
@@ -109,7 +112,7 @@ const FeedbackForm: FC<Props> = ({
         <div>
             {isOpenForm && (
                 <Modal isShow={isShow} closeModal={closeFeedbackForm}>
-                    {loading !== "succeeded" ? (
+                    {loading !== "loading" ? (
                         <form onSubmit={handleSubmit} autoComplete="off" className="form">
                             <ThemeProvider theme={muiTheme}>
                                 <CssTextField

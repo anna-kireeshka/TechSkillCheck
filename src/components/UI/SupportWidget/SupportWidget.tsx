@@ -1,16 +1,16 @@
 import React, {memo, useContext, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
+
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-
-import {getDesignTokens} from "../../../shared/mui-theme";
-import {ThemeContext} from "../../../contexts/theme-context";
-
-import {setLoading} from "../../../store/feedback";
-
-import Page from "../Layout/Page/Page"
-import FeedbackForm from "../../Feedback/FeedbackForm";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+
+import {getDesignTokens} from "shared/mui-theme";
+import {ThemeContext} from "contexts/theme-context";
+import {setLoading} from "store/feedback";
+
+import Page from "components/UI/Layout/Page/Page"
+import FeedbackForm from "components/Feedback/FeedbackForm";
 
 import "./SupportWidget.scss";
 

@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import DOMPurify from "dompurify";
-import CodeSyntaxHighlighter from "../CodeSyntaxHighlighter/CodeSyntaxHighlighter";
+
+import CodeSyntaxHighlighter from "components/UI/CodeSyntaxHighlighter/CodeSyntaxHighlighter";
 
 import './RadioButtonGroup.scss'
 

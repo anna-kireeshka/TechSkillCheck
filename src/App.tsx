@@ -1,19 +1,20 @@
 import React, {useState} from "react";
+import {BrowserRouter, Navigate, Route, Routes, useLocation,} from "react-router-dom";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
+
+import {ThemeContext} from "./contexts/theme-context";
+import {LangContext} from "./contexts/lang-context";
+
+import Header from "./components/Header/Header";
+import DirectionsPage from "./pages/DirectionsPage";
 import TechnologiesPage from "./pages/TechnologiesPage";
 import QuizPage from "./pages/QuizPage";
 import QuizResultPage from "./pages/QuizResult";
 import PageNotFound from "./pages/PageNotFound";
-import {BrowserRouter, Navigate, Route, Routes, useLocation,} from "react-router-dom";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
-import Header from "./components/Header/Header";
-import {ThemeContext} from "./contexts/theme-context";
-import {LangContext} from "./contexts/lang-context";
-import DirectionsPage from "./pages/DirectionsPage";
-
 
 function AnimatedRoutes() {
     const location = useLocation();
-
+    // technologies=1?quiz=1
     return (
         <TransitionGroup component={null}>
             <CSSTransition

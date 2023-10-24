@@ -1,27 +1,31 @@
 import {FC, memo} from "react";
-import Page from "../UI/Layout/Page/Page"
-import CardList from "../UI/CardList/CardList"
-import {DirectionsDTO} from "../../shared/types/types";
+
+import CardList from "components/UI/CardList/CardList"
+import Container from "components/UI/Layout/Container/Container";
+import ContainerCenter from "components/UI/Layout/ContainerCenter/ContainerCenter";
+
+import {DirectionsDTO} from "shared/types/types";
 import "./Directions.scss";
-import Container from "../UI/Layout/Container/Container";
 
 interface Props {
     directions: DirectionsDTO;
     title: string;
+    subTitle: string;
 }
 
-const Directions: FC<Props> = memo(({directions, title}) => {
+const Directions: FC<Props> = memo(({directions, title, subTitle}) => {
     return (
-        <Page>
-            <Container>
+        <Container>
+            <h1>{title}</h1>
+            <ContainerCenter>
                 <div className="direction">
                     <div className="direction_column">
-                        <h2 className="direction_sub_heading">{title}</h2>
+                        <h2 className="direction_sub_heading">{subTitle}</h2>
                         <CardList directionList={directions} page={"directions"}/>
                     </div>
                 </div>
-            </Container>
-        </Page>
+            </ContainerCenter>
+        </Container>
     );
 });
 

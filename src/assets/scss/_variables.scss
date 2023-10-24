@@ -11,50 +11,51 @@ $borderRadius: 7px;
 $buttonColorBlue: #2C6CB0;
 
 $themes: (
-  light: (
-    colorText: #334366,
-    colorBackground: #eff2f6,
-    cardColor: $white,
-    cardBoxShadow: $boxShadow,
-    buttonColor: #e3efff,
-    buttonBg: #2677cd,
-    buttonBgHover: #1665b9,
-    modalBg: $white,
-    progressBarBg: #dcdce1,
-    radioChecked: #2C6CB0,
-  ),
-  dark: (
-    colorText: #e9f0ff,
-    colorBackground:  #15223a,
-    cardColor: #253d5b,
-    cardBoxShadow: 0 7px 20px 0 rgb(16 23 41),
-    buttonColor: #151c2a,
-    buttonBg: #b5e7ff,
-    buttonBgHover: #7cc0ed,
-    modalBg: #1e334e,
-    progressBarBg: #becce9,
-    radioChecked: #b5e7ff,
-  ),
+        light: (
+                colorText: #334366,
+                colorBackground: #eff2f6,
+                cardColor: $white,
+                cardBoxShadow: $boxShadow,
+                buttonColor: #e3efff,
+                buttonBg: #208DF2,
+                buttonBgHover: #1B51DE,
+                modalBg: $white,
+                progressBarBg: #dcdce1,
+                radioChecked: #208DF2,
+        ),
+        dark: (
+                colorText: #BFE1FA,
+                colorBackground: #15223a,
+                cardColor: #253d5b,
+                cardBoxShadow: 0 7px 20px 0 rgb(16 23 41),
+                buttonColor: #151c2a,
+                buttonBg: #7AC2F8,
+                buttonBgHover: #53ADF9,
+                modalBg: #1e334e,
+                progressBarBg: #becce9,
+                radioChecked: #7AC2F8,
+        ),
 );
 
 @mixin themify($themes) {
-    @each $theme, $map in $themes {
-      .theme-#{$theme} & {
-        $theme-map: () !global;
-        @each $key, $submap in $map {
-          $value: map-get(map-get($themes, $theme), '#{$key}');
-          $theme-map: map-merge(
-            $theme-map,
-              (
-                $key: $value,
-              )
-            ) !global;
-          }
-          @content;
-          $theme-map: null !global;
-        }
-     }
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+                        $theme-map,
+                        (
+                                $key: $value,
+                        )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
   }
-  @function themed($key) {
-    @return map-get($theme-map, $key);
-  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

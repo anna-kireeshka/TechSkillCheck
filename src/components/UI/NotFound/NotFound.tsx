@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
-import {useTranslation} from "react-i18next";
-import Button from "../Button/Button";
 import {useNavigate} from "react-router-dom";
-import Page from "../Layout/Page/Page";
-import Container from "../Layout/Container/Container";
+
+import Button from "components/UI/Button/Button";
+import NotFound404 from "assets/image/notFound404.png";
+import NotFoundSection from "assets/image/notFound.png";
+import ContainerCenter from 'components/UI/Layout/ContainerCenter/ContainerCenter';
+import Container from "components/UI/Layout/Container/Container";
+
 import "./NotFound.scss";
-import NotFound404 from "../../Icon/NotFound404";
-import NotFoundSection from "../../Icon/NotFoundSection";
 
 interface Props {
     page: string;
@@ -16,22 +17,19 @@ interface Props {
 }
 
 const NotFound: FC<Props> = ({page, linkTitle, image, title}) => {
-    const {t} = useTranslation();
     const navigate = useNavigate();
     return (
-        <Page>
-            <Container>
+        <Container>
+            <ContainerCenter>
                 <div className="not-found">
-                    <h1 className="not-found__title">{title}</h1>
-                    <div className="not-found__image">
-                        <div className="not-found__image-svg">
-                            {image === "404" ? <NotFound404/> : <NotFoundSection/>}
-                        </div>
+                    <div className={image === "404" ? "not-found__image" : "not-section__image"}>
+                        <img src={image === "404" ? NotFound404 : NotFoundSection} alt="NotFound"/>
                     </div>
+                    <h1 className="not-found__title">{title}</h1>
                     {linkTitle && <Button onClickButton={() => navigate(`/${page}`)}>{linkTitle}</Button>}
                 </div>
-            </Container>
-        </Page>
+            </ContainerCenter>
+        </Container>
     );
 };
 

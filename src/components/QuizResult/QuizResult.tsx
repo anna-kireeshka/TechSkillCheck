@@ -1,22 +1,33 @@
 import React, {FC, useContext, useEffect, useState} from "react";
-import {CodeSyntaxHighlighter, Container, Page} from "../../UI/index";
-import "./QuizResult.scss";
-import {fetchResultQuiz, getResult} from "../../../store/quiz";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {QuizResultDTO} from "../../../shared/types/types"
+
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Icon from "@mui/material/Icon";
-import {LangContext} from "../../../contexts/lang-context"
-import Button from "../../UI/Button/Button";
+
+import {fetchResultQuiz, getResult} from "store/quiz";
+
+import {QuizResultDTO} from "shared/types/types"
+import {LangContext} from "contexts/lang-context"
+
+import CodeSyntaxHighlighter from "components/UI/CodeSyntaxHighlighter/CodeSyntaxHighlighter";
+import Container from "components/UI/Layout/Container/Container";
+import Button from "components/UI/Button/Button";
+import ContainerCenter from "components/UI/Layout/ContainerCenter/ContainerCenter";
+
+import "./QuizResult.scss";
 
 interface QuizResultIconProps {
     correctId: number;
     answerId: number;
-    currentId: number
+    currentId: number;
 }
 
+interface QuizResultProps {
+    title: string;
+    directionId: number;
+}
 
 const QuizResultIcon: FC<QuizResultIconProps> = ({correctId, answerId, currentId}) => {
     if (correctId === currentId) {
@@ -34,7 +45,7 @@ const QuizResultIcon: FC<QuizResultIconProps> = ({correctId, answerId, currentId
     }
 }
 
-const QuizResult = () => {
+const QuizResult: FC<QuizResultProps> = ({title, directionId}) => {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
@@ -81,12 +92,13 @@ const QuizResult = () => {
     }
 
     const getToTest = () => {
-        navigate(`/`)
+        navigate(`/technologies/${directionId}`)
     }
 
     return (
-        <Page>
-            <Container>
+        <Container>
+            <h1>{title}</h1>
+            <ContainerCenter>
                 <div className="quizResultContainer">
                     <h3 className="quizResultHeading">
                         Вы правильно ответили на {result} из {total} вопросов!
@@ -116,8 +128,8 @@ const QuizResult = () => {
                     ))}
                     <Button onClickButton={getToTest}>Вернутся к тестам</Button>
                 </div>
-            </Container>
-        </Page>
+            </ContainerCenter>
+        </Container>
     );
 };
 
