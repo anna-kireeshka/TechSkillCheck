@@ -8,8 +8,6 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import {getDesignTokens} from "shared/mui-theme";
 import {ThemeContext} from "contexts/theme-context";
 import {setLoading} from "store/feedback";
-
-import Page from "components/UI/Layout/Page/Page"
 import FeedbackForm from "components/Feedback/FeedbackForm";
 
 import "./SupportWidget.scss";
@@ -35,22 +33,20 @@ const SupportWidget = memo(() => {
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <Page>
-                <div className="widget-container">
-                    <button className="widget" onClick={openFeedbackForm}>
-                        <SupportAgentIcon
-                            sx={{color: muiTheme.palette.primary.light}}
-                            fontSize="large"
-                        />
-                        <p className="widget-text">{t("widgetSupport")}</p>
-                    </button>
-                    <FeedbackForm
-                        isShow={isOpenFeedbackForm}
-                        closeFeedbackForm={closeFeedbackFormEvent}
-                        isOpenForm={isOpenFeedbackForm}
+            <div className="widget-container">
+                <button className="widget" onClick={openFeedbackForm}>
+                    <SupportAgentIcon
+                        sx={{color: muiTheme.palette.primary.light}}
+                        fontSize="large"
                     />
-                </div>
-            </Page>
+                    <p className="widget-text">{t("widgetSupport")}</p>
+                </button>
+                <FeedbackForm
+                    isShow={isOpenFeedbackForm}
+                    closeFeedbackForm={closeFeedbackFormEvent}
+                    isOpenForm={isOpenFeedbackForm}
+                />
+            </div>
         </ThemeProvider>
     );
 });

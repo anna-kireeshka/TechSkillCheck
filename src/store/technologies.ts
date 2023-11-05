@@ -5,7 +5,7 @@ import {HTTP} from "../shared/api/api";
 
 const initialState: InitialState<TechnologiesDTO> = {
     data: {} as TechnologiesDTO,
-    loading: "idle",
+    loading: "loading",
 };
 
 export const fetchTechnologies = createAsyncThunk(

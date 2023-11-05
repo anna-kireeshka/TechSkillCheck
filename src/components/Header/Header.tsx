@@ -1,7 +1,6 @@
 import React, {memo, useContext, useEffect, useMemo} from 'react';
 import {useTranslation} from "react-i18next";
 
-import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar"
 import IconButton from "@mui/material/IconButton"
@@ -49,34 +48,32 @@ const Header = memo(() => {
                             borderBottom: 1,
                             borderColor: muiTheme.palette.primary.dark,
                         }}>
-                    <Toolbar sx={{padding: 0}}>
-                        <Stack
-                            direction="row"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            sx={{flexGrow: 1}}
-                        >
-                            <SupportWidget/>
-                            <Stack direction="row">
-                                <IconButton
-                                    size="large"
-                                    edge="start"
-                                    color="primary"
-                                    aria-label="theme"
-                                    sx={{mr: 2}}
-                                    onClick={() => changeTheme()}
-                                    className="header_btn"
-                                >
-                                    {
-                                        theme === 'light' ? <WbSunnyIcon/> : <DarkModeIcon/>
-                                    }
+                    <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        sx={{flexGrow: 1}}
+                    >
+                        <SupportWidget/>
+                        <Stack direction="row">
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="primary"
+                                aria-label="theme"
+                                sx={{ml: 2}}
+                                onClick={() => changeTheme()}
+                                className="header_btn"
+                            >
+                                {
+                                    theme === 'light' ? <WbSunnyIcon/> : <DarkModeIcon/>
+                                }
 
-                                </IconButton>
-                                <Button sx={{mr: 2}} color="primary" className="header_btn"
-                                        onClick={() => changeLang()}>{lang}</Button>
-                            </Stack>
+                            </IconButton>
+                            <Button sx={{ml: 2}} color="primary" className="header_btn"
+                                    onClick={() => changeLang()}>{lang}</Button>
                         </Stack>
-                    </Toolbar>
+                    </Stack>
                 </AppBar>
             </ThemeProvider>
         </Page>

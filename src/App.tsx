@@ -14,7 +14,6 @@ import PageNotFound from "./pages/PageNotFound";
 
 function AnimatedRoutes() {
     const location = useLocation();
-    // technologies=1?quiz=1
     return (
         <TransitionGroup component={null}>
             <CSSTransition

@@ -9,7 +9,7 @@ interface CustomInitialState extends InitialState<FormDTO> {
 
 const initialState: CustomInitialState = {
     data: {} as FormDTO,
-    loading: "idle",
+    loading: "loading",
     isOpenForm: false,
 };
 

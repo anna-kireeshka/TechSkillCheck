@@ -9,7 +9,7 @@ interface ExtendedInitialState extends InitialState<DirectionsDTO> {
 
 const initialState: ExtendedInitialState = {
     data: {} as DirectionsDTO,
-    loading: "idle",
+    loading: "loading",
     directionId: 0,
 };
 export const fetchDirections = createAsyncThunk(

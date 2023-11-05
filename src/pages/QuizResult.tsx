@@ -11,7 +11,7 @@ import {getDirectionsId} from "../store/directions";
 
 
 const QuizResultPage = memo(() => {
-    const theme = useContext(ThemeContext);
+    const {theme} = useContext(ThemeContext);
     const {t} = useTranslation()
     const directionId = useSelector(getDirectionsId)
     const links = [
@@ -21,8 +21,8 @@ const QuizResultPage = memo(() => {
     ]
     return (
         <Page>
-            <Breadcrumbs links={links}/>
-            <div className={`${theme.theme}`}>
+            <div className={`${theme}`}>
+                <Breadcrumbs links={links}/>
                 <QuizResult title={t("resultTitle")} directionId={directionId}/>
             </div>
         </Page>

@@ -58,7 +58,7 @@ i18n.use(initReactI18next).init({
                 formLabelSubject: "Тема сообщения",
                 formLabelMessage: "Текст сообщения",
                 formButtonText: "Отправить",
-                formMessageSuccessfully: "Ваше обращение успещно отправлено",
+                formMessageSuccessfully: "Ваше обращение успешно отправлено",
                 widgetSupport: "Связаться с нами",
                 notFound: "Страница не найдена",
                 redirectLink: "Вернуться на главную",

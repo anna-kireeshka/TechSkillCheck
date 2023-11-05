@@ -140,6 +140,9 @@ h3 {
   text-align: center;
   font-size: 1.3rem;
   margin-bottom: 2rem;
+  @include themify($themes) {
+    color: themed('colorText');
+  }
 }
 
 .form {
@@ -149,22 +152,3 @@ h3 {
 }
 
 $easy: cubic-bezier(0.39, 0.575, 0.565, 1);
-
-// .route-animation-enter {
-//   opacity: 0;
-//   transform: translate3d(0, 100%, 0)
-// }
-// .route-animation-active {
-//   opacity: 1;
-//   transform: translate3d(0, 0, 0);
-//   transition: opacity 500ms $easy, transform 500ms $easy;
-// }
-// .route-animation-exit {
-//   opacity: 1;
-//   transform: translate3d(0, 0, 0);
-// }
-// .route-animation-exit-active {
-//   opacity: 0;
-//   transform: translate3d(0, -100%, 0);
-//   transition: opacity 500ms $easy, transform 500ms $easy;
-// }

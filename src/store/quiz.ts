@@ -10,7 +10,7 @@ interface ExtendedInitialState extends InitialState<QuizDTO> {
 
 const initialState: ExtendedInitialState = {
     data: {} as QuizDTO,
-    loading: "idle",
+    loading: "loading",
     optionId: 0,
     result: [],
 };

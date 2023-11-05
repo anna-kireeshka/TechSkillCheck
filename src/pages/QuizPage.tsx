@@ -47,21 +47,21 @@ const QuizPage = memo(() => {
 
     return (
         <Page>
-            <Breadcrumbs links={links}/>
-            {
-                LoadingStatus === 'loading' ? (
-                    <div className={`${theme}`}>
+            <div className={`${theme}`}>
+                <Breadcrumbs links={links}/>
+                {
+                    LoadingStatus === 'loading' ? (
                         <Quiz quiz={quiz} lang={lang}/>
-                    </div>
-                ) : (
-                    <NotFound
-                        page={`technologies/${directionId}}`}
-                        linkTitle={t("redirectLinkToTechnologies")}
-                        title={t("redirectLinkToTechnologies")}
-                        image={"section"}
-                    />
-                )
-            }
+                    ) : (
+                        <NotFound
+                            page={`technologies/${directionId}}`}
+                            linkTitle={t("redirectLinkToTechnologies")}
+                            title={t("redirectLinkToTechnologies")}
+                            image={"section"}
+                        />
+                    )
+                }
+            </div>
         </Page>
     );
 });
