@@ -4,7 +4,6 @@ import {useLocation} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
 import {LangContext} from "contexts/lang-context";
-import {ThemeContext} from "contexts/theme-context";
 import {fetchQuiz, getLoadingStatus, getQuiz} from "store/quiz";
 import {getDirectionsId} from "store/directions"
 import {getUrlId} from "shared/helpers/transform";
@@ -17,7 +16,6 @@ import Page from "components/UI/Layout/Page/Page";
 const QuizPage = memo(() => {
     const dispatch = useDispatch();
     const {t} = useTranslation()
-    const {theme} = useContext(ThemeContext);
     const {lang} = useContext(LangContext);
     const location = useLocation();
     const LoadingStatus = useSelector(getLoadingStatus)
@@ -47,21 +45,19 @@ const QuizPage = memo(() => {
 
     return (
         <Page>
-            <div className={`${theme}`}>
-                <Breadcrumbs links={links}/>
-                {
-                    LoadingStatus === 'loading' ? (
-                        <Quiz quiz={quiz} lang={lang}/>
-                    ) : (
-                        <NotFound
-                            page={`technologies/${directionId}}`}
-                            linkTitle={t("redirectLinkToTechnologies")}
-                            title={t("redirectLinkToTechnologies")}
-                            image={"section"}
-                        />
-                    )
-                }
-            </div>
+            <Breadcrumbs links={links}/>
+            {
+                LoadingStatus === 'loading' ? (
+                    <Quiz quiz={quiz} lang={lang}/>
+                ) : (
+                    <NotFound
+                        page={`technologies/${directionId}}`}
+                        linkTitle={t("redirectLinkToTechnologies")}
+                        title={t("redirectLinkToTechnologies")}
+                        image={"section"}
+                    />
+                )
+            }
         </Page>
     );
 });

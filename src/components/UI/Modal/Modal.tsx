@@ -24,31 +24,29 @@ const Modal: FC<Props> = ({children, isShow, closeModal}) => {
     );
 
     return (
-        <div className={`${theme}`}>
-            <CssDialog
-                open={isShow}
-                onClose={closeModal}
-                maxWidth="xs"
-                fullWidth={true}
-                PaperProps={{sx: {borderRadius: "17px"}}}
+        <CssDialog
+            open={isShow}
+            onClose={closeModal}
+            maxWidth="xs"
+            fullWidth={true}
+            PaperProps={{sx: {borderRadius: "17px"}}}
+        >
+            <IconButton
+                sx={{
+                    position: "absolute",
+                    right: 8,
+                    top: 8,
+                }}
+                onClick={closeModal}
+                color="primary"
+                size="small"
             >
-                <IconButton
-                    sx={{
-                        position: "absolute",
-                        right: 8,
-                        top: 8,
-                    }}
-                    onClick={closeModal}
-                    color="primary"
-                    size="small"
-                >
-                    <CloseIcon fontSize="small"/>
-                </IconButton>
-                <DialogContent sx={{paddingTop: 6, borderRadius: 17}}>
-                    {children}
-                </DialogContent>
-            </CssDialog>
-        </div>
+                <CloseIcon fontSize="small"/>
+            </IconButton>
+            <DialogContent sx={{paddingTop: 6, borderRadius: 17}}>
+                {children}
+            </DialogContent>
+        </CssDialog>
     );
 };
 

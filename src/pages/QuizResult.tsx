@@ -1,7 +1,5 @@
-import React, {memo, useContext} from 'react';
+import React, {memo} from 'react';
 import {useTranslation} from "react-i18next";
-
-import {ThemeContext} from 'contexts/theme-context';
 
 import QuizResult from "components/QuizResult/QuizResult";
 import Breadcrumbs from "components/UI/Breadcrumbs/Breadcrumbs";
@@ -11,7 +9,6 @@ import {getDirectionsId} from "../store/directions";
 
 
 const QuizResultPage = memo(() => {
-    const {theme} = useContext(ThemeContext);
     const {t} = useTranslation()
     const directionId = useSelector(getDirectionsId)
     const links = [
@@ -21,10 +18,8 @@ const QuizResultPage = memo(() => {
     ]
     return (
         <Page>
-            <div className={`${theme}`}>
-                <Breadcrumbs links={links}/>
-                <QuizResult title={t("resultTitle")} directionId={directionId}/>
-            </div>
+            <Breadcrumbs links={links}/>
+            <QuizResult title={t("resultTitle")} directionId={directionId}/>
         </Page>
     );
 });

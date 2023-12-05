@@ -34,7 +34,7 @@ const Header = memo(() => {
         localStorage.setItem('default-theme', isCurrentLight ? 'dark' : 'light');
     }
     const muiTheme = useMemo(() => createTheme(getDesignTokens(theme)), [theme]);
-    
+
     return (
         <ThemeProvider theme={muiTheme}>
             <Page>
@@ -53,7 +53,7 @@ const Header = memo(() => {
                         alignItems="center"
                         sx={{flexGrow: 1}}
                     >
-                        <SupportWidget theme={muiTheme}/>
+                        <SupportWidget theme={muiTheme} lang={lang}/>
                         <Stack direction="row">
                             <IconButton
                                 size="large"

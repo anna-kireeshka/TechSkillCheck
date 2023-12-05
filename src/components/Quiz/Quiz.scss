@@ -1,5 +1,3 @@
-@import "../../assets/scss/variables.scss";
-
 @mixin cardContent {
   background-color: #fff;
   border-radius: 8px;
@@ -13,17 +11,15 @@
 }
 
 .test {
-
   &Card {
     border-radius: 20px;
     padding: 2rem 1rem;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
-    @include themify($themes) {
-      background: themed("cardColor");
-      box-shadow: themed("cardBoxShadow");
-    }
+    background: var(--cardBg);
+    box-shadow: var(--shadow);
+
     @media screen and (min-width: 786px) {
       padding: 2rem;
       margin: 0 auto;
@@ -63,9 +59,7 @@
     margin-bottom: 2rem;
     position: relative;
     z-index: 1;
-    @include themify($themes) {
-      background: themed("progressBarBg");
-    }
+    background: var(--grey);
 
     &Info {
       display: flex;
@@ -90,9 +84,7 @@
     }
 
     &Bar {
-      @include themify($themes) {
-        background: themed("radioChecked");
-      }
+      background: var(--buttonBgHover);
       top: 0;
       left: 0;
       z-index: 2;

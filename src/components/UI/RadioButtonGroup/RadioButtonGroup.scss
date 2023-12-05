@@ -1,5 +1,3 @@
-@import "src/assets/scss/_variables.scss";
-
 .formGroup {
   position: relative;
 
@@ -7,18 +5,14 @@
     display: none;
 
     &:checked + label {
-      @include themify($themes) {
-        color: themed("radioChecked");
-      }
+      color: var(--buttonBgHover);
 
       &::before {
         content: "";
         display: block;
         border: 1px solid;
-        @include themify($themes) {
-          background-color: themed("radioChecked");
-          border-color: themed("radioChecked");
-        }
+        background: var(--buttonBg);
+        border-color: var(--buttonBg);
       }
     }
   }

@@ -10,18 +10,27 @@ import TechnologiesPage from "./pages/TechnologiesPage";
 import QuizPage from "./pages/QuizPage";
 import QuizResultPage from "./pages/QuizResult";
 import PageNotFound from "./pages/PageNotFound";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 function AnimatedRoutes() {
     const location = useLocation();
     return (
-        <Routes location={location}>
-            <Route path="/" element={<Navigate to="/directions"/>}/>
-            <Route path="/directions" element={<DirectionsPage/>}/>
-            <Route path="/technologies/:id" element={<TechnologiesPage/>}/>
-            <Route path="/quiz/:id" element={<QuizPage/>}/>
-            <Route path="/quiz/result/:id" element={<QuizResultPage/>}/>
-            <Route path="*" element={<PageNotFound/>}/>
-        </Routes>
+        <TransitionGroup component={null}>
+            <CSSTransition
+                key={location.pathname}
+                classNames="fade"
+                timeout={300}
+            >
+                <Routes location={location}>
+                    <Route path="/" element={<Navigate to="/directions"/>}/>
+                    <Route path="/directions" element={<DirectionsPage/>}/>
+                    <Route path="/technologies/:id" element={<TechnologiesPage/>}/>
+                    <Route path="/quiz/:id" element={<QuizPage/>}/>
+                    <Route path="/quiz/result/:id" element={<QuizResultPage/>}/>
+                    <Route path="*" element={<PageNotFound/>}/>
+                </Routes>
+            </CSSTransition>
+        </TransitionGroup>
     );
 }
 

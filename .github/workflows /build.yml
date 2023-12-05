@@ -1,0 +1,30 @@
+name: CI/CD skillup
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      with:
+        host: skillup.il.kalink.in
+        port: 3001
+        key: ${{ secrets.KEY }}
+        script:
+          docker-compose up -d
+#      uses:
+#        - uses: actions/checkout@v1
+#        - name: Starting Node.js ${{ matrix.node-version }}
+#          uses: actions/checkout@v4
+#          with:
+#            node-version: ${{ matrix.node-version }}
+#        - name: Install modules
+#          run: npm run install
+#        - name: Build app
+#          run: npm run build
+#        - name: Deploy to Server
+#          run: ssh docker-compose up -d
