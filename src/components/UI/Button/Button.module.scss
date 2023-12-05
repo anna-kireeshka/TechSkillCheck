@@ -1,0 +1,19 @@
+.button {
+  border: none;
+  outline: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 210px;
+  cursor: pointer;
+  background-color: var(--buttonBg);
+  color: var(--buttonColor);
+
+  &:hover {
+    background-color: var(--buttonBgHover);
+  }
+
+  &Disabled {
+    pointer-events: none;
+  }
+}

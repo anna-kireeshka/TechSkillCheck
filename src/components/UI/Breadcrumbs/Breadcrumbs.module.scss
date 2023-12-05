@@ -1,17 +1,12 @@
-@import "src/assets/scss/_variables.scss";
-
-
 .breadcrumbs {
   margin: 2rem 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 
-  &__link {
+  &Link {
     text-decoration: underline;
     display: flex;
-    @include themify($themes) {
-      color: themed('buttonBg');
-    }
+    color: var(--buttonBg);
   }
 }

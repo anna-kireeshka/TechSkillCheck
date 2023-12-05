@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {BrowserRouter, Navigate, Route, Routes, useLocation,} from "react-router-dom";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 import {ThemeContext} from "./contexts/theme-context";
 import {LangContext} from "./contexts/lang-context";
@@ -15,33 +14,24 @@ import PageNotFound from "./pages/PageNotFound";
 function AnimatedRoutes() {
     const location = useLocation();
     return (
-        <TransitionGroup component={null}>
-            <CSSTransition
-                key={location.key}
-                classNames="route-animation"
-                timeout={300}
-                unmountOnExit
-            >
-                <Routes location={location}>
-                    <Route path="/" element={<Navigate to="/directions"/>}/>
-                    <Route path="/directions" element={<DirectionsPage/>}/>
-                    <Route path="/technologies/:id" element={<TechnologiesPage/>}/>
-                    <Route path="/quiz/:id" element={<QuizPage/>}/>
-                    <Route path="/quiz/result/:id" element={<QuizResultPage/>}/>
-                    <Route path="*" element={<PageNotFound/>}/>
-                </Routes>
-            </CSSTransition>
-        </TransitionGroup>
+        <Routes location={location}>
+            <Route path="/" element={<Navigate to="/directions"/>}/>
+            <Route path="/directions" element={<DirectionsPage/>}/>
+            <Route path="/technologies/:id" element={<TechnologiesPage/>}/>
+            <Route path="/quiz/:id" element={<QuizPage/>}/>
+            <Route path="/quiz/result/:id" element={<QuizResultPage/>}/>
+            <Route path="*" element={<PageNotFound/>}/>
+        </Routes>
     );
 }
 
 function App() {
-    const isBrowserDefaulDark = () =>
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isBrowserDefaultLight = () =>
+        window.matchMedia("(prefers-color-scheme: light)").matches;
 
     const getDefaultTheme = (): string => {
         const localStorageTheme = localStorage.getItem("default-theme");
-        const browserDefault = isBrowserDefaulDark() ? "dark" : "light";
+        const browserDefault = isBrowserDefaultLight() ? "light" : "dark";
         return localStorageTheme || browserDefault;
     };
 

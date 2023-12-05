@@ -6,15 +6,15 @@ import CodeSyntaxHighlighter from "components/UI/CodeSyntaxHighlighter/CodeSynta
 import './RadioButtonGroup.scss'
 
 
+interface QuestionList {
+    id: number;
+    text?: string;
+    code?: string;
+    image?: string;
+}
+
 interface Props {
-    list: [
-        {
-            id: number;
-            text?: string;
-            code?: string;
-            image?: string;
-        }
-    ];
+    list: QuestionList[];
     onSetAnswer: (value: string | number) => void
 }
 
@@ -22,24 +22,24 @@ const RadioButtonGroup: FC<Props> = ({list, onSetAnswer}) => {
     return (
         <div className="formGroup">
             {list &&
-                list.map((el: any) => (
+                list.map((el: QuestionList) => (
                     <div key={el.id}>
                         <input
                             className="formGroupInput"
                             type="radio"
-                            id={el.id}
+                            id={`${el.id}`}
                             name="radio"
                             value={el.text}
                             onChange={() => onSetAnswer(el.id)}
                         />
                         {el.code ? (
-                            <label className="formGroupLabel" htmlFor={el.id}>
+                            <label className="formGroupLabel" htmlFor={`${el.id}`}>
                                 <CodeSyntaxHighlighter code={el.code}/>
                             </label>
                         ) : (
                             <label
                                 className="formGroupLabel"
-                                htmlFor={el.id}
+                                htmlFor={`${el.id}`}
                                 dangerouslySetInnerHTML={{
                                     __html: DOMPurify.sanitize(el.text),
                                 }}

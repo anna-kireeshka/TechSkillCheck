@@ -8,6 +8,6 @@
 
   @media screen and (min-width: 786px) {
     margin: 0;
-    min-height: calc(100vh - 8rem - 5.25rem);
+    min-height: var(--minHeightContainer);
   }
 }

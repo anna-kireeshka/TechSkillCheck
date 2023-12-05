@@ -1,25 +1,17 @@
-import React, {memo, useContext, useMemo, useState} from "react";
+import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 
-import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {ThemeProvider} from "@mui/material/styles";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-
-import {getDesignTokens} from "shared/mui-theme";
-import {ThemeContext} from "contexts/theme-context";
 import {setLoading} from "store/feedback";
 import FeedbackForm from "components/Feedback/FeedbackForm";
 
-import "./SupportWidget.scss";
+import styles from "./SupportWidget.module.scss";
 
-const SupportWidget = memo(() => {
+const SupportWidget = ({theme}: any) => {
     const {t} = useTranslation();
-    const theme = useContext(ThemeContext);
     const dispatch = useDispatch();
-    const muiTheme = useMemo(
-        () => createTheme(getDesignTokens(theme.theme)),
-        [theme.theme]
-    );
 
     const [isOpenFeedbackForm, setOpenFeedbackForm] = useState(false);
     const openFeedbackForm = () => {
@@ -32,14 +24,14 @@ const SupportWidget = memo(() => {
     };
 
     return (
-        <ThemeProvider theme={muiTheme}>
-            <div className="widget-container">
-                <button className="widget" onClick={openFeedbackForm}>
+        <ThemeProvider theme={theme}>
+            <div className={styles.widget}>
+                <button className={styles.widgetContainer} onClick={openFeedbackForm}>
                     <SupportAgentIcon
-                        sx={{color: muiTheme.palette.primary.light}}
+                        sx={{color: theme.palette.primary.light}}
                         fontSize="large"
                     />
-                    <p className="widget-text">{t("widgetSupport")}</p>
+                    <p className={styles.widgetContainerText}>{t("widgetSupport")}</p>
                 </button>
                 <FeedbackForm
                     isShow={isOpenFeedbackForm}
@@ -49,6 +41,6 @@ const SupportWidget = memo(() => {
             </div>
         </ThemeProvider>
     );
-});
+};
 
 export default SupportWidget;

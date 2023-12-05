@@ -1,5 +1,21 @@
 @import "src/assets/scss/_variables.scss";
 
+:root {
+  --minHeightContainer: 750px;
+
+  .theme-light {
+    --buttonColor: #e3efff;
+    --buttonBg: #208DF2;
+    --buttonBgHover: #1B51DE;
+  }
+
+  .theme-dark {
+    --buttonColor: #151c2a;
+    --buttonBg: #7AC2F8;
+    --buttonBgHover: #53ADF9;
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat Alternates', sans-serif;

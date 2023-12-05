@@ -1,4 +1,4 @@
-import React, {memo, useContext, useEffect, useState} from "react";
+import React, {memo, useContext, useEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
 import {useTranslation} from "react-i18next";
@@ -39,11 +39,11 @@ const QuizPage = memo(() => {
 
     const quiz = useSelector(getQuiz);
 
-    const links = [
+    const links = useMemo(() => ([
         {link: '/', name: t("directionTitle"), isActive: true},
         {link: `/technologies/${directionId}`, name: t("technologyTitle"), isActive: true},
         {link: '', name: t("testTitle"), isActive: false}
-    ]
+    ]), [lang])
 
     return (
         <Page>

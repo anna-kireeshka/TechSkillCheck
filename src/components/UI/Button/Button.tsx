@@ -1,7 +1,6 @@
 import React, {FC, ReactNode} from "react";
-import cx from "classnames";
 
-import "./Button.scss";
+import styles from "./Button.module.scss"
 
 interface Props {
     children: ReactNode;
@@ -10,15 +9,9 @@ interface Props {
 }
 
 const Button: FC<Props> = ({children, onClickButton, isDisabled = false}) => {
-    const button = cx([
-        "button",
-        {
-            "button-disabled": isDisabled,
-        },
-    ]);
-
     return (
-        <button className={button} type="button" onClick={onClickButton} disabled={isDisabled}>
+        <button className={`${styles.button} ${isDisabled ? styles.buttonDisabled : ""}`} type="button"
+                onClick={onClickButton} disabled={isDisabled}>
             {children}
         </button>
     );

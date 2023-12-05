@@ -15,7 +15,6 @@ import {getDesignTokens} from "shared/mui-theme"
 
 import SupportWidget from "components/UI/SupportWidget/SupportWidget";
 import Page from "components/UI/Layout/Page/Page";
-import "./Header.scss";
 
 
 const Header = memo(() => {
@@ -35,10 +34,10 @@ const Header = memo(() => {
         localStorage.setItem('default-theme', isCurrentLight ? 'dark' : 'light');
     }
     const muiTheme = useMemo(() => createTheme(getDesignTokens(theme)), [theme]);
-
+    
     return (
-        <Page>
-            <ThemeProvider theme={muiTheme}>
+        <ThemeProvider theme={muiTheme}>
+            <Page>
                 <AppBar position="static"
                         color='primary'
                         sx={{
@@ -54,7 +53,7 @@ const Header = memo(() => {
                         alignItems="center"
                         sx={{flexGrow: 1}}
                     >
-                        <SupportWidget/>
+                        <SupportWidget theme={muiTheme}/>
                         <Stack direction="row">
                             <IconButton
                                 size="large"
@@ -70,13 +69,13 @@ const Header = memo(() => {
                                 }
 
                             </IconButton>
-                            <Button sx={{ml: 2}} color="primary" className="header_btn"
+                            <Button sx={{ml: 2}} color="primary"
                                     onClick={() => changeLang()}>{lang}</Button>
                         </Stack>
                     </Stack>
                 </AppBar>
-            </ThemeProvider>
-        </Page>
+            </Page>
+        </ThemeProvider>
     )
 })
 export default Header

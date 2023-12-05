@@ -1,9 +1,9 @@
-import React, {FC, memo} from "react";
+import React, {FC} from "react";
 import {NavLink} from "react-router-dom";
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Icon from "@mui/material/Icon";
-import "./Breadcrumbs.scss";
+import styles from "./Breadcrumbs.module.scss";
 
 interface Props {
     links: {
@@ -13,15 +13,15 @@ interface Props {
     }[];
 }
 
-const Breadcrumbs: FC<Props> = memo(({links}) => {
+const Breadcrumbs: FC<Props> = ({links}) => {
 
     return (
-        <div className="breadcrumbs">
+        <div className={styles.breadcrumbs}>
             {
                 links.map((el: any, index: number) => (
                     <NavLink to={el.link}
                              key={index}
-                             className="breadcrumbs__link"
+                             className={styles.breadcrumbsLink}
                              style={({isActive}) =>
                                  isActive
                                      ? {
@@ -45,6 +45,6 @@ const Breadcrumbs: FC<Props> = memo(({links}) => {
             }
         </div>
     );
-});
+};
 
 export default Breadcrumbs;

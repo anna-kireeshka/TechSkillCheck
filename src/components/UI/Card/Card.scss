@@ -1,4 +1,5 @@
 @import "../../../assets/scss/variables.scss";
+
 .card {
   position: relative;
   border-radius: 20px;
@@ -9,23 +10,26 @@
   text-align: center;
   cursor: pointer;
   background: #fff;
+
   &_technologies {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   @include themify($themes) {
     background: themed('cardColor');
     box-shadow: themed('cardBoxShadow');
   }
 }
+
 .card:hover {
   animation: cardAnimation 1s linear;
   animation-iteration-count: infinite;
 
 }
 
-@keyframes  cardAnimation{
+@keyframes cardAnimation {
   0% {
     transform: rotate(0deg);
   }
