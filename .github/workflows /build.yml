@@ -1,21 +1,21 @@
-name: CI/CD skillup
-
-on:
-  push:
-    branches: [ master ]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
-    steps:
-      with:
-        host: skillup.il.kalink.in
-        port: 3001
-        key: ${{ secrets.KEY }}
-        script:
-          docker-compose up -d
+#name: CI/CD skillup
+#
+#on:
+#  push:
+#    branches: [ master ]
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        node-version: [ 16.x ]
+#    steps:
+#      with:
+#        host: skillup.il.kalink.in
+#        port: 3001
+#        key: ${{ secrets.KEY }}
+#        script:
+#          docker-compose up -d
 #      uses:
 #        - uses: actions/checkout@v1
 #        - name: Starting Node.js ${{ matrix.node-version }}
