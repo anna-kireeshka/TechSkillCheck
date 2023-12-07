@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 
 import {LangContext} from "contexts/lang-context";
-import {fetchTechnologies, getTechnologies} from "store/technologies";
+import {fetchTechnologies, getTechnologies, getTechnologiesStatus} from "store/technologies";
 import {getUrlId} from "shared/helpers/transform";
 
 import TechnologiesList from "components/TechnologiesList/TechnologiesList";
@@ -20,6 +20,7 @@ const TechnologiesPage = () => {
     const dispatch = useDispatch();
 
     const [directionId, setDirectionId] = useState(0);
+    const isLoading = useSelector(getTechnologiesStatus)
 
     useEffect(() => {
         const id = getUrlId(location.pathname)
@@ -43,7 +44,7 @@ const TechnologiesPage = () => {
         <Page>
             <Breadcrumbs links={links}/>
             {
-                technologies.total > 1 ? (
+                isLoading === 'loading' ? (
                     <>
                         <TechnologiesList
                             title={t("technologyTitle")}
