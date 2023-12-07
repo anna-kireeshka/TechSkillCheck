@@ -33,6 +33,9 @@ const directionsSlice = createSlice({
             state.loading = "loading";
             state.data = action.payload;
         });
+        builder.addCase(fetchDirections.rejected, (state, action) => {
+            state.loading = "failed";
+        });
     },
 });
 

@@ -25,9 +25,14 @@ const technologiesSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchTechnologies.fulfilled, (state, action) => {
             state.data = action.payload;
+            state.loading = state.data.total === 0 ? "failed" : "loading"
+        });
+        builder.addCase(fetchTechnologies.rejected, (state, action) => {
+            state.loading = "failed";
         });
     },
 });
 
-export const getTechnologies = (state: any) => state.technology.data;
+export const getTechnologies = (state: { technology: InitialState<TechnologiesDTO> }) => state.technology.data;
+export const getTechnologiesStatus = (state: { technology: InitialState<TechnologiesDTO> }) => state.technology.loading
 export default technologiesSlice.reducer;

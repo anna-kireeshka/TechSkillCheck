@@ -55,11 +55,10 @@ const quizSlice = createSlice({
         builder
             .addCase(fetchQuiz.fulfilled, (state, action) => {
                 state.data = action.payload;
-                if (action.payload === '' || action.payload === null) {
-                    state.loading = "failed";
-                } else {
-                    state.loading = "loading"
-                }
+                state.loading = action.payload === '' || action.payload === null ? "failed" : "loading"
+            })
+            .addCase(fetchQuiz.rejected, (state, action) => {
+                state.loading = "failed";
             })
             .addCase(fetchNextQuiz.fulfilled, (state, action) => {
                 state.data = action.payload;
