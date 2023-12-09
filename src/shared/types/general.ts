@@ -1,6 +1,7 @@
 export interface InitialState<T> {
     data: T;
-    loading: 'idle' | 'pending' | 'loading' | 'failed'
+    status: 'idle' | 'pending' | 'successfully' | 'failed',
+    error?: string,
 }
 
 export interface NextTestQueryRequest {

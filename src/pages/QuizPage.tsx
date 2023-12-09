@@ -18,7 +18,7 @@ const QuizPage = memo(() => {
     const {t} = useTranslation()
     const {lang} = useContext(LangContext);
     const location = useLocation();
-    const LoadingStatus = useSelector(getLoadingStatus)
+    const status = useSelector(getLoadingStatus)
     const directionId = useSelector(getDirectionsId)
 
     const [technologyId, setTechnologyId] = useState(0);
@@ -33,7 +33,7 @@ const QuizPage = memo(() => {
             const params = {id: technologyId, lang: lang};
             dispatch<any>(fetchQuiz(params));
         }
-    }, [technologyId, lang]);
+    }, [technologyId, lang, dispatch]);
 
     const quiz = useSelector(getQuiz);
 
@@ -47,17 +47,16 @@ const QuizPage = memo(() => {
         <Page>
             <Breadcrumbs links={links}/>
             {
-                LoadingStatus === 'loading' ? (
-                    <Quiz quiz={quiz} lang={lang}/>
-                ) : (
-                    <NotFound
-                        page={`technologies/${directionId}}`}
-                        linkTitle={t("redirectLinkToTechnologies")}
-                        title={t("redirectLinkToTechnologies")}
-                        image={"section"}
-                    />
-                )
-            }
+                status === 'successfully' && <Quiz quiz={quiz} lang={lang}/>
+            }{
+            status === 'failed' && <NotFound
+                page={`technologies/${directionId}}`}
+                linkTitle={t("redirectLinkToTechnologies")}
+                title={t("redirectLinkToTechnologies")}
+                image={"section"}
+            />
+
+        }
         </Page>
     );
 });

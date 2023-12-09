@@ -2,10 +2,10 @@ import React, {FC, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import {setLoading} from "store/feedback";
 import FeedbackForm from "components/Feedback/FeedbackForm";
 
 import styles from "./SupportWidget.module.scss";
+import {setLoading} from "../../../store/feedback";
 
 interface Props {
     theme: any,
@@ -23,7 +23,7 @@ const SupportWidget: FC<Props> = ({theme, lang}) => {
 
     const closeFeedbackFormEvent = () => {
         setOpenFeedbackForm(false);
-        dispatch<any>(setLoading("idle"));
+        dispatch<any>(setLoading("idle"))
     };
 
     return (

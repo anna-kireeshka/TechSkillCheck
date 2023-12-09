@@ -7,18 +7,26 @@ interface ExtendedInitialState extends InitialState<DirectionsDTO> {
     directionId?: number;
 }
 
-const initialState: ExtendedInitialState = {
-    data: {} as DirectionsDTO,
-    loading: "loading",
-    directionId: 0,
-};
 export const fetchDirections = createAsyncThunk(
-    "/direction/getDirections",
-    async (lang: string) => {
-        const response = await HTTP.get(`/directions?lang=${lang}`);
-        return response.data;
+    "fetchDirections",
+    async (lang: string, {rejectWithValue}) => {
+        try {
+            const response = await HTTP.get(`/directions?lang=${lang}`);
+
+            if (response.data.total === 0 || response.statusText === "No Content") throw new Error('Error');
+
+            return await response.data;
+        } catch (err: any) {
+            return rejectWithValue({error: err.message})
+        }
     }
 );
+
+const initialState: ExtendedInitialState = {
+    data: {} as DirectionsDTO,
+    status: "idle",
+    directionId: 0,
+};
 
 const directionsSlice = createSlice({
     name: "direction",
@@ -29,17 +37,20 @@ const directionsSlice = createSlice({
         },
     },
     extraReducers(builder) {
+        builder.addCase(fetchDirections.pending, (state) => {
+            state.status = "pending";
+        });
         builder.addCase(fetchDirections.fulfilled, (state, action) => {
-            state.loading = "loading";
+            state.status = "successfully";
             state.data = action.payload;
         });
         builder.addCase(fetchDirections.rejected, (state, action) => {
-            state.loading = "failed";
+            state.status = "failed";
         });
     },
 });
 
-export const getDirectionsStatus = (state: any) => state.direction.loading;
+export const getDirectionsStatus = (state: any) => state.direction.status;
 export const getDirections = (state: any) => state.direction.data;
 export const getDirectionsId = (state: any) => state.direction.directionId;
 export const {setDirectionsId} = directionsSlice.actions;

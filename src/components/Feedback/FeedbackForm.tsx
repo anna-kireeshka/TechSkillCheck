@@ -41,12 +41,13 @@ const FeedbackForm: FC<Props> = ({
     const [errors, setErrors] = useState<FormDTO>({});
     const [isEmpty, setIsEmty] = useState(true);
     const [token, setToken] = useState("");
-    const loading = useSelector(statusFeedback);
+    const status = useSelector(statusFeedback);
 
     useEffect(() => {
         validateValues(formData);
         checkFormValues();
-    }, [formData, loading, dispatch]);
+        console.log(status)
+    }, [formData, dispatch, status]);
 
     const CssTextField = useMemo(
         () => styled(TextField)(getInputFieldStyle(theme)),
@@ -70,7 +71,8 @@ const FeedbackForm: FC<Props> = ({
                 message: '',
                 lang: lang,
             };
-            setFormData(initialFormData)
+            setFormData({...initialFormData})
+            setToken('');
         }
     };
 
@@ -112,7 +114,7 @@ const FeedbackForm: FC<Props> = ({
         <div>
             {isOpenForm && (
                 <Modal isShow={isShow} closeModal={closeFeedbackForm}>
-                    {loading !== "loading" ? (
+                    {status !== "successfully" ? (
                         <form onSubmit={handleSubmit} autoComplete="off" className="form">
                             <CssTextField
                                 name="email"
@@ -171,7 +173,7 @@ const FeedbackForm: FC<Props> = ({
                             <div className={`theme-${theme}`}>
                                 <Button
                                     onClickButton={handleSubmit}
-                                    isDisabled={!!isDisabledButton}
+                                    isDisabled={isDisabledButton}
                                 >
                                     {t("formButtonText")}
                                 </Button>

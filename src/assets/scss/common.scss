@@ -1,6 +1,7 @@
 
 :root {
   --minHeightContainer: 750px;
+  --minHeightMobileContainer: 500px;
 
   .theme-light {
     --buttonColor: #e3efff;
@@ -154,15 +155,16 @@ h3 {
 
 .fade-enter {
   opacity: 0;
+  transition: opacity 200ms;
 }
 
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 200ms;
 }
 
 .fade-exit {
   opacity: 1;
+  transition: opacity 1s ease-in;
 }
 
 .fade-exit-active {

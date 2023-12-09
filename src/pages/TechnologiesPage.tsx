@@ -1,65 +1,55 @@
-import React, {useContext, useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
+import React, {useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 
 import {LangContext} from "contexts/lang-context";
 import {fetchTechnologies, getTechnologies, getTechnologiesStatus} from "store/technologies";
-import {getUrlId} from "shared/helpers/transform";
 
 import TechnologiesList from "components/TechnologiesList/TechnologiesList";
 import Breadcrumbs from "components/UI/Breadcrumbs/Breadcrumbs";
 import NotFound from "components/UI/NotFound/NotFound";
 import Page from "components/UI/Layout/Page/Page";
+import {getDirectionsId} from "../store/directions";
 
 const TechnologiesPage = () => {
     const {t} = useTranslation();
     const {lang} = useContext(LangContext);
-    const location = useLocation();
 
     const dispatch = useDispatch();
-
-    const [directionId, setDirectionId] = useState(0);
-    const isLoading = useSelector(getTechnologiesStatus)
-
-    useEffect(() => {
-        const id = getUrlId(location.pathname)
-        setDirectionId(id);
-    }, []);
-
-    useEffect(() => {
-        if (directionId > 0) {
-            const params = {id: directionId, lang: lang};
-            dispatch<any>(fetchTechnologies(params));
-        }
-    }, [directionId, lang]);
-
+    const status = useSelector(getTechnologiesStatus)
     const technologies = useSelector(getTechnologies);
+    const directionId = useSelector(getDirectionsId)
+
+    useEffect(() => {
+        dispatch<any>(fetchTechnologies({id: directionId, lang: lang}));
+    }, [lang, dispatch]);
+
     const links = [
         {link: '/', name: t("directionTitle"), isActive: true},
         {link: '', name: t("technologyTitle"), isActive: false}
     ]
 
+    let contentBlock: any = ''
+    if (status === 'successfully') {
+        contentBlock = <TechnologiesList
+            title={t("technologyTitle")}
+            subTitle={t("technologySubTitle")}
+            technologies={technologies}
+        />
+    } else if (status === 'failed') {
+        contentBlock = <NotFound
+            page={"directions"}
+            linkTitle={t("redirectLinkToDirection")}
+            image={"section"}
+            title={t("notFoundSection")}/>
+    } else if (status === "pending") {
+        contentBlock = <p>Loading...</p>
+    }
+
     return (
         <Page>
             <Breadcrumbs links={links}/>
-            {
-                isLoading === 'loading' ? (
-                    <>
-                        <TechnologiesList
-                            title={t("technologyTitle")}
-                            subTitle={t("technologySubTitle")}
-                            technologies={technologies}
-                        />
-                    </>
-                ) : (
-                    <NotFound
-                        page={"directions"}
-                        linkTitle={t("redirectLinkToDirection")}
-                        image={"section"}
-                        title={t("notFoundSection")}/>
-                )
-            }
+            {contentBlock}
         </Page>
     );
 };

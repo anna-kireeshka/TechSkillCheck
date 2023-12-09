@@ -1,0 +1,11 @@
+.technologies {
+  width: 100%;
+  
+  @media screen and (min-width: 1024px) {
+    padding-bottom: 0;
+  }
+
+  &Column {
+    width: 100%;
+  }
+}
