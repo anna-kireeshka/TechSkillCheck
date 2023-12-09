@@ -15,34 +15,30 @@ const DirectionsPage = memo(() => {
     const {lang} = useContext(LangContext);
 
     const dispatch = useDispatch();
+    const loading = useSelector(getDirectionsStatus)
+    const directions = useSelector(getDirections);
 
     useEffect(() => {
         dispatch<any>(fetchDirections(lang));
-    }, [lang]);
+    }, [lang, dispatch]);
 
-    const isLoading = useSelector(getDirectionsStatus)
-
-    const directions = useSelector(getDirections);
-
+    let contentBlock: any = '';
+    if (loading === 'loading') {
+        contentBlock = <Directions
+            title={t("directionTitle")}
+            subTitle={t("directionSubTitle")}
+            directions={directions}/>
+    } else if (loading === "failed") {
+        contentBlock = <NotFound
+            page={``}
+            linkTitle={''}
+            title={t("directionsNotFound")}
+            image={"section"}
+        />
+    }
     return (
         <Page>
-            {
-                isLoading === 'loading' ?
-                    (
-                        <Directions
-                            title={t("directionTitle")}
-                            subTitle={t("directionSubTitle")}
-                            directions={directions}/>
-                    ) : (
-                        <NotFound
-                            page={``}
-                            linkTitle={''}
-                            title={t("directionsNotFound")}
-                            image={"section"}
-                        />
-                    )
-            }
-
+            {contentBlock}
         </Page>
     );
 });

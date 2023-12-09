@@ -46,7 +46,7 @@ const FeedbackForm: FC<Props> = ({
     useEffect(() => {
         validateValues(formData);
         checkFormValues();
-    }, [formData, loading, dispatch]);
+    }, [formData, loading]);
 
     const CssTextField = useMemo(
         () => styled(TextField)(getInputFieldStyle(theme)),
@@ -70,7 +70,8 @@ const FeedbackForm: FC<Props> = ({
                 message: '',
                 lang: lang,
             };
-            setFormData(initialFormData)
+            setFormData({...initialFormData})
+            setToken('');
         }
     };
 
@@ -171,7 +172,7 @@ const FeedbackForm: FC<Props> = ({
                             <div className={`theme-${theme}`}>
                                 <Button
                                     onClickButton={handleSubmit}
-                                    isDisabled={!!isDisabledButton}
+                                    isDisabled={isDisabledButton}
                                 >
                                     {t("formButtonText")}
                                 </Button>

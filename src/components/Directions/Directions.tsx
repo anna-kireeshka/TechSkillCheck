@@ -1,4 +1,4 @@
-import {FC, memo} from "react";
+import {FC} from "react";
 
 import CardList from "components/UI/CardList/CardList"
 import Container from "components/UI/Layout/Container/Container";
@@ -13,7 +13,7 @@ interface Props {
     subTitle: string;
 }
 
-const Directions: FC<Props> = memo(({directions, title, subTitle}) => {
+const Directions: FC<Props> = ({directions, title, subTitle}) => {
     return (
         <Container>
             <h1>{title}</h1>
@@ -27,6 +27,6 @@ const Directions: FC<Props> = memo(({directions, title, subTitle}) => {
             </ContainerCenter>
         </Container>
     );
-});
+};
 
 export default Directions;

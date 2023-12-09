@@ -5,6 +5,7 @@ import {TechnologiesDTO} from "shared/types/types";
 import CardList from "components/UI/CardList/CardList";
 import Container from "components/UI/Layout/Container/Container";
 import ContainerCenter from "components/UI/Layout/ContainerCenter/ContainerCenter";
+import styles from "./TechnologiesList.module.scss"
 
 interface Props {
     title: string;
@@ -17,8 +18,8 @@ const TechnologiesList: FC<Props> = ({title, technologies, subTitle}) => {
         <Container>
             <h1>{title}</h1>
             <ContainerCenter>
-                <div className="technologies">
-                    <div className="technologiesColumn">
+                <div className={styles.technologies}>
+                    <div className={styles.technologiesColumn}>
                         <h2>{subTitle}</h2>
                         <CardList directionList={technologies} page={"technologies"}/>
                     </div>

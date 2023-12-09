@@ -9,7 +9,7 @@ interface CustomInitialState extends InitialState<FormDTO> {
 
 const initialState: CustomInitialState = {
     data: {} as FormDTO,
-    loading: "pending",
+    status: "pending",
     isOpenForm: false,
 };
 
@@ -32,18 +32,18 @@ const feedbackSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(fetchFeedback.pending, (state, action) => {
-                state.loading = 'loading'
+                state.status = 'loading'
             })
 
             .addCase(fetchFeedback.fulfilled, (state, action) => {
-                state.loading = "loading";
+                state.status = "loading";
                 state.data = action.payload;
             });
     },
 });
 
 export const fetchFeedbackForm = (state: any) => state.feedback.data;
-export const statusFeedback = (state: { feedback: InitialState<FormDTO> }) => state.feedback.loading
+export const statusFeedback = (state: { feedback: InitialState<FormDTO> }) => state.feedback.status
 export const {setLoading} = feedbackSlice.actions;
 
 export default feedbackSlice.reducer;

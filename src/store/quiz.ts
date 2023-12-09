@@ -10,7 +10,7 @@ interface ExtendedInitialState extends InitialState<QuizDTO> {
 
 const initialState: ExtendedInitialState = {
     data: {} as QuizDTO,
-    loading: "loading",
+    status: "loading",
     optionId: 0,
     result: [],
 };
@@ -55,10 +55,10 @@ const quizSlice = createSlice({
         builder
             .addCase(fetchQuiz.fulfilled, (state, action) => {
                 state.data = action.payload;
-                state.loading = action.payload === '' || action.payload === null ? "failed" : "loading"
+                state.status = action.payload === '' || action.payload === null ? "failed" : "loading"
             })
             .addCase(fetchQuiz.rejected, (state, action) => {
-                state.loading = "failed";
+                state.status = "failed";
             })
             .addCase(fetchNextQuiz.fulfilled, (state, action) => {
                 state.data = action.payload;
@@ -72,7 +72,7 @@ const quizSlice = createSlice({
 export const getQuiz = (state: any) => state.quiz.data;
 export const getResult = (state: any) => state.quiz.result;
 export const getOptionId = (state: any) => state.quiz.optionId;
-export const getLoadingStatus = (state: any) => state.quiz.loading
+export const getLoadingStatus = (state: any) => state.quiz.status
 
 export const {setAnswer} = quizSlice.actions;
 export default quizSlice.reducer;

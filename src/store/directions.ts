@@ -7,18 +7,19 @@ interface ExtendedInitialState extends InitialState<DirectionsDTO> {
     directionId?: number;
 }
 
-const initialState: ExtendedInitialState = {
-    data: {} as DirectionsDTO,
-    loading: "loading",
-    directionId: 0,
-};
 export const fetchDirections = createAsyncThunk(
-    "/direction/getDirections",
+    "fetchDirections",
     async (lang: string) => {
         const response = await HTTP.get(`/directions?lang=${lang}`);
         return response.data;
     }
 );
+
+const initialState: ExtendedInitialState = {
+    data: {} as DirectionsDTO,
+    status: "loading",
+    directionId: 0,
+};
 
 const directionsSlice = createSlice({
     name: "direction",
@@ -29,17 +30,20 @@ const directionsSlice = createSlice({
         },
     },
     extraReducers(builder) {
+        builder.addCase(fetchDirections.pending, (state, action) => {
+            state.status = "pending";
+        });
         builder.addCase(fetchDirections.fulfilled, (state, action) => {
-            state.loading = "loading";
+            state.status = "loading";
             state.data = action.payload;
         });
         builder.addCase(fetchDirections.rejected, (state, action) => {
-            state.loading = "failed";
+            state.status = "failed";
         });
     },
 });
 
-export const getDirectionsStatus = (state: any) => state.direction.loading;
+export const getDirectionsStatus = (state: any) => state.direction.status;
 export const getDirections = (state: any) => state.direction.data;
 export const getDirectionsId = (state: any) => state.direction.directionId;
 export const {setDirectionsId} = directionsSlice.actions;
