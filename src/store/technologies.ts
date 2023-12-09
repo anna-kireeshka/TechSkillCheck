@@ -12,14 +12,17 @@ const initialState: InitialState<TechnologiesDTO> = {
 
 export const fetchTechnologies = createAsyncThunk(
     "/technology/getTechnologies",
-    async (params: { id: number, lang: string }, thunkAPI) => {
+    async (params: { id: number, lang: string }, {rejectWithValue}) => {
         try {
             const response = await HTTP.get(
                 `/technologies?direction_id=${params.id}&lang=${params.lang}`
             );
+
+            if (response.data.total === 0 || response.statusText === "No Content") throw new Error('Data is enpty');
+
             return response.data;
         } catch (err: any) {
-            return thunkAPI.rejectWithValue({error: err.message})
+            return rejectWithValue({error: err.message})
         }
 
     }
@@ -41,7 +44,7 @@ const technologiesSlice = createSlice({
         });
         builder.addCase(fetchTechnologies.fulfilled, (state, action) => {
             state.data = action.payload;
-            state.status = state.data.total === 0 ? "failed" : "loading"
+            state.status = "successfully"
         });
         builder.addCase(fetchTechnologies.rejected, (state, action) => {
             state.status = "failed";

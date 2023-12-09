@@ -22,7 +22,7 @@ const TechnologiesPage = () => {
 
     useEffect(() => {
         dispatch<any>(fetchTechnologies({id: directionId, lang: lang}));
-    }, [lang, status]);
+    }, [lang, dispatch]);
 
     const links = [
         {link: '/', name: t("directionTitle"), isActive: true},
@@ -30,7 +30,7 @@ const TechnologiesPage = () => {
     ]
 
     let contentBlock: any = ''
-    if (status === 'loading') {
+    if (status === 'successfully') {
         contentBlock = <TechnologiesList
             title={t("technologyTitle")}
             subTitle={t("technologySubTitle")}
@@ -42,6 +42,8 @@ const TechnologiesPage = () => {
             linkTitle={t("redirectLinkToDirection")}
             image={"section"}
             title={t("notFoundSection")}/>
+    } else if (status === "pending") {
+        contentBlock = <p>Loading...</p>
     }
 
     return (

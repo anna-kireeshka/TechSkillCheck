@@ -9,15 +9,22 @@ interface ExtendedInitialState extends InitialState<DirectionsDTO> {
 
 export const fetchDirections = createAsyncThunk(
     "fetchDirections",
-    async (lang: string) => {
-        const response = await HTTP.get(`/directions?lang=${lang}`);
-        return response.data;
+    async (lang: string, {rejectWithValue}) => {
+        try {
+            const response = await HTTP.get(`/directions?lang=${lang}`);
+
+            if (response.data.total === 0 || response.statusText === "No Content") throw new Error('Error');
+
+            return await response.data;
+        } catch (err: any) {
+            return rejectWithValue({error: err.message})
+        }
     }
 );
 
 const initialState: ExtendedInitialState = {
     data: {} as DirectionsDTO,
-    status: "loading",
+    status: "idle",
     directionId: 0,
 };
 
@@ -30,11 +37,11 @@ const directionsSlice = createSlice({
         },
     },
     extraReducers(builder) {
-        builder.addCase(fetchDirections.pending, (state, action) => {
+        builder.addCase(fetchDirections.pending, (state) => {
             state.status = "pending";
         });
         builder.addCase(fetchDirections.fulfilled, (state, action) => {
-            state.status = "loading";
+            state.status = "successfully";
             state.data = action.payload;
         });
         builder.addCase(fetchDirections.rejected, (state, action) => {

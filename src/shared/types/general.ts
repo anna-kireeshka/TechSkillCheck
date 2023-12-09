@@ -1,6 +1,6 @@
 export interface InitialState<T> {
     data: T;
-    status: 'idle' | 'pending' | 'loading' | 'failed',
+    status: 'idle' | 'pending' | 'successfully' | 'failed',
     error?: string,
 }
 

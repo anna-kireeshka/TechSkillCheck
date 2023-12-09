@@ -10,36 +10,61 @@ interface ExtendedInitialState extends InitialState<QuizDTO> {
 
 const initialState: ExtendedInitialState = {
     data: {} as QuizDTO,
-    status: "loading",
+    status: "idle",
     optionId: 0,
     result: [],
 };
 
 export const fetchQuiz = createAsyncThunk(
     "/quiz/getQuiz",
-    async (params: { id: number; lang: string }) => {
-        const response = await HTTP.get(
-            `/quiz/start?technology_id=${params.id}&lang=${params.lang}`
-        );
-        return response.data;
+    async (params: { id: number; lang: string }, {rejectWithValue}) => {
+        try {
+            const response = await HTTP.get(
+                `/quiz/start?technology_id=${params.id}&lang=${params.lang}`
+            );
+
+            console.log(response)
+            if (response.statusText === "No Content") {
+                throw new Error()
+            }
+            return response.data;
+        } catch (err: any) {
+            return rejectWithValue({error: err.message})
+        }
     }
 );
 
 export const fetchNextQuiz = createAsyncThunk(
     "/quiz/getNextQuiz",
-    async (query: NextTestQueryRequest) => {
-        const response = await HTTP.post(`/quiz/next`, query);
-        return response.data;
+    async (query: NextTestQueryRequest, {rejectWithValue}) => {
+        try {
+            const response = await HTTP.post(`/quiz/next`, query);
+            if (response.statusText === "No Content") {
+                throw new Error()
+            }
+            return response.data;
+        } catch (err: any) {
+            return rejectWithValue({error: err.message})
+        }
+
     }
 );
 
 export const fetchResultQuiz = createAsyncThunk(
     "/quiz/getResultQuiz",
-    async (params: { id: number; lang: string }) => {
-        const response = await HTTP.get(
-            `/quiz/result?quiz_id=${params.id}&lang=${params.lang}`
-        );
-        return response.data;
+    async (params: { id: number; lang: string }, {rejectWithValue}) => {
+        try {
+            const response = await HTTP.get(
+                `/quiz/result?quiz_id=${params.id}&lang=${params.lang}`
+            );
+            if (response.statusText === "No Content") {
+                throw new Error()
+            }
+            return response.data;
+        } catch (err: any) {
+            return rejectWithValue({error: err.message})
+        }
+
     }
 );
 
@@ -55,16 +80,24 @@ const quizSlice = createSlice({
         builder
             .addCase(fetchQuiz.fulfilled, (state, action) => {
                 state.data = action.payload;
-                state.status = action.payload === '' || action.payload === null ? "failed" : "loading"
+                state.status = "successfully"
             })
             .addCase(fetchQuiz.rejected, (state, action) => {
                 state.status = "failed";
             })
             .addCase(fetchNextQuiz.fulfilled, (state, action) => {
                 state.data = action.payload;
+                state.status = "successfully"
+            })
+            .addCase(fetchNextQuiz.rejected, (state) => {
+                state.status = "failed"
             })
             .addCase(fetchResultQuiz.fulfilled, (state, action) => {
-                state.result = action.payload
+                state.result = action.payload;
+                state.status = "successfully"
+            })
+            .addCase(fetchResultQuiz.rejected, (state) => {
+                state.status = "failed"
             })
     },
 });

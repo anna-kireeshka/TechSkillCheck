@@ -9,15 +9,20 @@ interface CustomInitialState extends InitialState<FormDTO> {
 
 const initialState: CustomInitialState = {
     data: {} as FormDTO,
-    status: "pending",
+    status: "idle",
     isOpenForm: false,
 };
 
 export const fetchFeedback = createAsyncThunk(
     "/feedback/fetchFeedbackForm",
-    async (request: FormDTO) => {
-        const response = await HTTP.post(`/feedback`, request);
-        return response.data;
+    async (request: FormDTO, {rejectWithValue}) => {
+        try {
+            const response = await HTTP.post(`/feedback`, request);
+            return response.data;
+        } catch (err: any) {
+            return rejectWithValue({error: err.message})
+        }
+
     }
 );
 
@@ -26,19 +31,22 @@ const feedbackSlice = createSlice({
     initialState,
     reducers: {
         setLoading: (state, action) => {
-            return {...state, loading: action.payload};
+            state.status = action.payload
         },
     },
     extraReducers(builder) {
         builder
             .addCase(fetchFeedback.pending, (state, action) => {
-                state.status = 'loading'
+                state.status = 'pending'
             })
 
             .addCase(fetchFeedback.fulfilled, (state, action) => {
-                state.status = "loading";
+                state.status = "successfully";
                 state.data = action.payload;
-            });
+            })
+            .addCase(fetchFeedback.rejected, (state) => {
+                state.status = "failed";
+            })
     },
 });
 

@@ -10,16 +10,16 @@ import TechnologiesPage from "./pages/TechnologiesPage";
 import QuizPage from "./pages/QuizPage";
 import QuizResultPage from "./pages/QuizResult";
 import PageNotFound from "./pages/PageNotFound";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {CSSTransition, SwitchTransition} from "react-transition-group";
 
 function AnimatedRoutes() {
     const location = useLocation();
     return (
-        <TransitionGroup component={null}>
+        <SwitchTransition>
             <CSSTransition
                 key={location.pathname}
                 classNames="fade"
-                timeout={300}
+                timeout={200}
             >
                 <Routes location={location}>
                     <Route path="/" element={<Navigate to="/directions"/>}/>
@@ -30,7 +30,7 @@ function AnimatedRoutes() {
                     <Route path="*" element={<PageNotFound/>}/>
                 </Routes>
             </CSSTransition>
-        </TransitionGroup>
+        </SwitchTransition>
     );
 }
 

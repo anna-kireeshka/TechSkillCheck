@@ -153,22 +153,23 @@ h3 {
   align-items: center;
 }
 
-//.fade-enter {
-//  opacity: 0;
-//}
-//
-//.fade-enter-active {
-//  opacity: 1;
-//  transition: opacity 200ms;
-//}
-//
-//.fade-exit {
-//  opacity: 1;
-//}
-//
-//.fade-exit-active {
-//  opacity: 0;
-//  transition: opacity 200ms;
-//}
+.fade-enter {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.fade-enter-active {
+  opacity: 1;
+}
+
+.fade-exit {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
 
 $easy: cubic-bezier(0.39, 0.575, 0.565, 1);

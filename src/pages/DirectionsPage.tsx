@@ -23,7 +23,7 @@ const DirectionsPage = memo(() => {
     }, [lang, dispatch]);
 
     let contentBlock: any = '';
-    if (loading === 'loading') {
+    if (loading === 'successfully') {
         contentBlock = <Directions
             title={t("directionTitle")}
             subTitle={t("directionSubTitle")}
