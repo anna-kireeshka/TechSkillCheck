@@ -42,6 +42,8 @@ const FeedbackForm: FC<Props> = ({
     const [isEmpty, setIsEmty] = useState(true);
     const [token, setToken] = useState("");
     const status = useSelector(statusFeedback);
+    // @ts-ignore
+    const REACT_APP_RECAPCHA_SITE_KEY = window.REACT_APP_RECAPCHA_SITE_KEY
 
     useEffect(() => {
         validateValues(formData);
@@ -110,6 +112,7 @@ const FeedbackForm: FC<Props> = ({
         setIsEmty(isEmptyFormData);
     };
 
+    // @ts-ignore
     return (
         <div>
             {isOpenForm && (
@@ -162,7 +165,7 @@ const FeedbackForm: FC<Props> = ({
                             {(!isEmpty && !Object.keys(errors).length) && (
                                 <div className="recapcha">
                                     <ReCAPTCHA
-                                        sitekey={process.env.REACT_APP_RECAPCHA_SITE_KEY}
+                                        sitekey={REACT_APP_RECAPCHA_SITE_KEY || ''}
                                         onChange={onChangeCaptcha}
                                         ref={recaptchaRef}
                                         theme={theme}

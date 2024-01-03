@@ -15,3 +15,9 @@ declare module '*.scss' {
     const content: Record<string, string>;
     export default content;
 }
+
+declare global {
+    interface Window {
+        REACT_APP_RECAPCHA_SITE_KEY: string;
+    }
+}
